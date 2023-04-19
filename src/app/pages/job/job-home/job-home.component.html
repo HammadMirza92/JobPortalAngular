@@ -159,4 +159,15 @@
 </div>
 
 
-<button (click)="checkToken()">Check Token</button>
+<ng-container ></ng-container>
+
+
+<div *ngIf="authenticated() === 'admin'">
+  <h2>Authorized</h2>
+</div>
+
+<div>
+  <h2> Not Authorized</h2>
+</div>
+
+<button (click)="authenticated()">Check Token</button>

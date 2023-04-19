@@ -1,10 +1,10 @@
-import { Component,Input, InjectFlags } from '@angular/core';
+import { Component,Input } from '@angular/core';
 import { IJob, JobStatus, JobType } from 'src/app/Interface/IDataTypes';
 import { JobDataService } from 'src/app/appServices/job-data.service';
 import {NgForm} from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { NgbDateStruct, NgbCalendar, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { SecurityService } from 'src/app/appServices/security.service';
 
 
 @Component({
@@ -18,10 +18,19 @@ export class JobHomeComponent {
 
   dataFromHtp:any;
 
+  @Input()
+   role:string = '';
 
+   ngOnInit():void{
+    console.log("oninit called")
+    this.authenticated();
+   }
 
-
-  constructor(private fetchJob:JobDataService,private formBuilder:FormBuilder, private fetDemo:JobDataService,private router: Router) {
+  constructor(private fetchJob:JobDataService,
+    private formBuilder:FormBuilder,
+    private fetDemo:JobDataService,
+    private router: Router,
+    private authenticate:SecurityService) {
     fetchJob.fetchJobs().subscribe((data)=>console.log("data from "+data) );
     fetchJob.fetchJobs().subscribe((data)=> this.AllJobdata =data );
 
@@ -59,10 +68,19 @@ export class JobHomeComponent {
 
   }
 
-  checkToken(): void {
+  // checkToken(): void {
 
 
-    window.location.href = "https://localhost:7021/Identity/Account/Login";
+  //   window.location.href = "https://localhost:7021/Identity/Account/Login";
+  // }
+
+  authenticated(){
+
+   // if(this.authenticate.isAuthenticated() == true){
+      console.log(this.authenticate.getRole());
+    return this.authenticate.getRole() ;
+   // }
+
   }
 
 }

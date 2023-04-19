@@ -99,5 +99,39 @@
         >Nice staff</a
       >
     </li>
+
+    <ng-container *ngIf="!authorized">
+      <li>
+        <a
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="active"
+          routerLink="login"
+          >Login</a
+        >
+      </li>
+      <li>
+        <a
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="active"
+          routerLink="register"
+          >Register</a
+        >
+      </li>
+    </ng-container>
+    <ng-container *ngIf="authorized">
+      <li>
+
+        <h2>Hello, User</h2>
+      </li>
+      <li>
+        <a
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="active"
+          routerLink="register"
+          >Logout</a
+        >
+      </li>
+    </ng-container>
+
   </ul>
 </nav>

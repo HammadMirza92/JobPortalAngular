@@ -1,6 +1,7 @@
 import { Component,Input } from '@angular/core';
 import { IJob, JobStatus } from 'src/app/Interface/IDataTypes';
 import { JobDataService } from 'src/app/appServices/job-data.service';
+import { SecurityService } from 'src/app/appServices/security.service';
 
 @Component({
   selector: 'app-job-list',
@@ -8,7 +9,14 @@ import { JobDataService } from 'src/app/appServices/job-data.service';
   styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent {
+  @Input()
+  role:string = '';
 
+
+ constructor(private authenticate:SecurityService) {
+
+
+ }
   @Input() jobs:IJob[]= [];
 
 
@@ -34,5 +42,8 @@ export class JobListComponent {
   functionCalled(jobTitle:string){
     console.log("job title is  ",jobTitle);
   }
+
+
+
 
 }

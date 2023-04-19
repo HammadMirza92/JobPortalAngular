@@ -9,7 +9,7 @@ import { CreateJobComponent } from './pages/job/create-job/create-job.component'
 import { JobHomeComponent } from './pages/job/job-home/job-home.component';
 
 import {HttpClientModule} from '@angular/common/http';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { HeaderComponent } from './includes/header/header.component';
 import { FooterComponent } from './includes/footer/footer.component';
 
@@ -20,6 +20,8 @@ import { MatModule } from './material/mat.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JobListComponent } from './pages/job/job-list/job-list.component';
+import { LoginComponent } from './pages/userAuth/login/login.component';
+import { RegisterComponent } from './pages/userAuth/register/register.component';
 
 
 
@@ -33,6 +35,8 @@ import { JobListComponent } from './pages/job/job-list/job-list.component';
     ViewJobComponent,
     CreateJobComponent,
     JobListComponent,
+    LoginComponent,
+    RegisterComponent,
 
   ],
   imports: [
