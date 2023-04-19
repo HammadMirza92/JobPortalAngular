@@ -1,0 +1,20 @@
+.form-group .ng-invalid.ng-touched{
+  border-color: red;
+}
+.error{
+  color: red;
+}
+
+.form{
+  width: 300px;
+  margin: 0 auto;
+  border: 1px solid gray;
+  padding: 20px;
+  border-radius: 5px;
+}
+.form label{
+  margin-top: 10px;
+}
+
+
+

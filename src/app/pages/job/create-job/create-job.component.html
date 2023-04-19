@@ -1,0 +1,56 @@
+<p>create-job works!</p>
+
+
+<form class="form" [formGroup]="creatJobForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label class="form-label">Icon</label>
+    <input class="form-control" type="text" formControlName="jobIcon"/>
+    <span class="error" *ngIf="!jobIcon.valid && jobIcon.touched">Icon is rquried</span>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Title</label>
+    <input class="form-control" type="text" formControlName="Title"/>
+    <span class="error" *ngIf="!Title.valid && Title.touched">Title is rquried</span>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Vacancies</label>
+    <input class="form-control" type="number" formControlName="Vacancy"/>
+    <span class="error" *ngIf="!Vacancy.valid && Vacancy.touched">Vacancies is rquried</span>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Description</label>
+    <textarea class="form-control" formControlName="Description" rows="3"></textarea>
+    <span class="error" *ngIf="!Description.valid && Description.touched">Description is rquried</span>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Responsibility</label>
+    <textarea class="form-control"formControlName="Responsibility" rows="3"></textarea>
+    <span class="error" *ngIf="!Responsibility.valid && Responsibility.touched">Responsibility is rquried</span>
+  </div>
+  <div class="form-group">
+    <label class="form-label">Qualifications</label>
+    <textarea class="form-control"formControlName="Qualifications" rows="3"></textarea>
+    <span class="error" *ngIf="!Qualifications.valid && Qualifications.touched">Qualifications is rquried</span>
+  </div>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <!-- <mat-select >
+        <mat-option value="status" *ngFor="let status of JobStatus">{{ status }}</mat-option>
+      </mat-select> -->
+      <span class="error" *ngIf="!Status.valid && Status.touched">Status is rquried</span>
+    </mat-form-field>
+
+
+  </div>
+
+  <div class="form-group">
+    <input class="btn btn-primary" type="submit" />
+  </div>
+</form>
+
+<p>{{creatJobForm.value | json}}</p>
+<p>{{creatJobForm.valid }}</p>
+<!-- <div *ngFor="let status of JobStatus">{{ JobStatus }}</div> -->
+
+

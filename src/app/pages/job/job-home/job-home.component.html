@@ -1,0 +1,162 @@
+
+
+<div class="fluid-container" style="margin: 20px">
+  <div class="row">
+    <div class="col-md-3">
+      <!-- Column 1 content here -->
+      <div ngbRow>
+        <div class="container">
+          <form [formGroup]="profileForm">
+            <!-- <mat-card>
+            <mat-card-header>
+              <mat-card-title class="card-title">
+                Search Job
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content> -->
+
+            <mat-accordion>
+              <mat-expansion-panel class="panel-content">
+                <mat-expansion-panel-header>
+                  Search by Job Keyword
+                </mat-expansion-panel-header>
+                <div>
+                  <mat-form-field appearance="outline" style="width: 100%">
+                    <mat-label>Job Title</mat-label>
+                    <input
+                      formControlName="jobTitle"
+                      matInput
+                      placeholder="Enter Job TitleS"
+                    />
+                  </mat-form-field>
+                </div>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel class="panel-content">
+                <mat-expansion-panel-header>
+                  Search by Location
+                </mat-expansion-panel-header>
+                <div class="jobCheckBoxes">
+
+
+
+                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                </div>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel class="panel-content">
+                <mat-expansion-panel-header>
+                  Job Type
+                </mat-expansion-panel-header>
+                <div class="jobCheckBoxes">
+                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                </div>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel class="panel-content">
+                <mat-expansion-panel-header>
+                  Job Status
+                </mat-expansion-panel-header>
+                <div class="jobCheckBoxes">
+                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                </div>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel class="panel-content">
+                <mat-expansion-panel-header>
+                  Start Budget
+                </mat-expansion-panel-header>
+                <div class="jobCheckBoxes">
+                  <mat-slider min="0" max="10000" step="100" showTickMarks discrete [displayWith]="formatLabel">
+                    <input matSliderThumb>
+                  </mat-slider>
+                </div>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel class="panel-content">
+                <mat-expansion-panel-header>
+                  End Budget
+                </mat-expansion-panel-header>
+                <div class="jobCheckBoxes">
+                  <mat-slider min="0" max="10000" step="100"  discrete [displayWith]="formatLabel">
+                    <input matSliderThumb>
+                  </mat-slider>
+                </div>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel class="panel-content">
+                <mat-expansion-panel-header>
+                  Vacancy
+                </mat-expansion-panel-header>
+                <div class="jobCheckBoxes">
+                  <mat-slider min="0" max="200" step="10"  discrete [displayWith]="formatLabelVacancy">
+                    <input matSliderThumb>
+                  </mat-slider>
+                </div>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel class="panel-content">
+                <mat-expansion-panel-header>
+                  Start Date
+                </mat-expansion-panel-header>
+                <div class="jobCheckBoxes">
+
+                </div>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel class="panel-content">
+                <mat-expansion-panel-header>
+                  End Date
+                </mat-expansion-panel-header>
+                <div class="jobCheckBoxes">
+                  <mat-card class="demo-inline-calendar-card">
+                    <mat-calendar [(selected)]="selected"></mat-calendar>
+                  </mat-card>
+                  <p>Selected date: {{selected}}</p>
+                </div>
+              </mat-expansion-panel>
+
+
+
+
+            </mat-accordion>
+
+            <!-- </mat-card-content>
+            <mat-card-actions> -->
+            <button
+              class="btnSearchJob"
+              (click)="saveForm()"
+              color="primary"
+              mat-raised-button
+            >
+              Submit
+            </button>
+            <!-- </mat-card-actions>
+          </mat-card> -->
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <h3 class="jobHeading">Jobs</h3>
+
+      <!-- Column 2 content here -->
+      <div ngbRow>
+       <app-job-list [jobs]="AllJobdata" ></app-job-list>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  {{dataFromHtp}}
+</div>
+
+
+<button (click)="checkToken()">Check Token</button>

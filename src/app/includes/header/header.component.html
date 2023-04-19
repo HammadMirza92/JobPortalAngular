@@ -1,16 +1,103 @@
-<header>
-  <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>My App</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-  </mat-toolbar>
-
-</header>
+<div class="top-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-5 col-sm-5 col-xs-12">
+        <ul class="header-social pull-left">
+          <li>
+            <a
+              href="http://www.twitter.com"
+              class="social-twitter"
+              target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="http://www.Instagram.com"
+              class="social-instagram"
+              target="_blank"
+              ><i class="fa fa-instagram"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="http://www.LinkedIn.com"
+              class="social-linkedin"
+              target="_blank"
+              ><i class="fa fa-linkedin"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="http://www.Behance.com"
+              class="social-behance"
+              target="_blank"
+              ><i class="fa fa-behance"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="http://www.Pintrest.com"
+              class="social-pinterest"
+              target="_blank"
+              ><i class="fa fa-pinterest"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12">
+        <div class="header-info">
+          <a href="mailto:Support@domain.com"
+            ><i class="fa fa-envelope"></i>Support@domain.com</a
+          ><a href="tel:+92 333 1234567"
+            ><i class="fa fa-phone"></i> +92 333 1234567</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="stroke">
+  <ul>
+    <li>
+      <a
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
+        routerLink="home"
+        >Home</a
+      >
+    </li>
+    <li>
+      <a
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
+        routerLink="Job"
+        >Job</a
+      >
+    </li>
+    <li>
+      <a
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
+        routerLink="create-job"
+        >Downloads</a
+      >
+    </li>
+    <li>
+      <a
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
+        routerLink="More"
+        >More</a
+      >
+    </li>
+    <li>
+      <a
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
+        routerLink="Nice"
+        >Nice staff</a
+      >
+    </li>
+  </ul>
+</nav>

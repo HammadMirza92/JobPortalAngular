@@ -18,9 +18,9 @@ export type IJob= {
 }
 
 export enum JobStatus {
-  FullTime = 'full-time',
-  PartTime = 'part-time',
-  Contract = 'contract',
+  FullTime ,
+  PartTime,
+  Contract ,
 
 }
 export enum JobType{

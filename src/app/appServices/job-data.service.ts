@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient,HttpHeaders } from '@angular/common/http';
 import { IJob } from '../Interface/IDataTypes';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -10,35 +9,33 @@ import { map } from 'rxjs/operators';
 })
 export class JobDataService {
 
-  getJobUrl="https://localhost:7120/api/job/";
+  basURL= "https://localhost:7120";
+  // getJobUrl="https://localhost:7120/api/job/";
   constructor(private http:HttpClient) { }
 
-  fetchJobs():Observable<IJob[]>{
-    return this.http.get<any[]>(this.getJobUrl).pipe(
-      map((response:any[])=>{
-        return response.map((job) => {
-          return {
-            id: job.id,
-            icon: job.icon,
-            title:job.title,
-            vacancy:job.vacancy,
-            description:job.description,
-            responsibility:job.responsibility,
-            qualifications:job.qualifications,
-            status:job.status,
-            type:job.type,
-            companyDetail:job.companyDetail,
-            startBudget:job.startBudget,
-            endBudget:job.endBudget,
-            startDate:job.startDate,
-            endDate:job.endDate,
-            location:job.location
-          } as IJob;
-        });
-      })
-    );
+  fetchJobs(): Observable<IJob[]> {
+    return this.http.get<IJob[]>(this.basURL+ "/api/job/");
   }
   fetJobById(id:number){
-    return this.http.get(this.getJobUrl + id)
+    return this.http.get(this.basURL+ "/api/job/" + id)
+  }
+
+  getToken(){
+    return "aunUjsd988sdasdSdas8d9asd8"
+  }
+
+  HeaderToken:any = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.getToken()
+  });
+
+
+
+  fetDemo(){
+    // this.http.get('https://localhost:7021/api/test/GetMovies',  this.HeaderToken )
+    // .subscribe(response => {
+    //   // Handle the response
+    // });
+
+    return this.http.get("https://localhost:5002/api/demo");
   }
 }

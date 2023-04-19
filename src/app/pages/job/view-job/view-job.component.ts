@@ -21,8 +21,6 @@ export class ViewJobComponent {
    }
 
 
-
-
   onBack(){
     this.routing.navigate(['home']);
   }
