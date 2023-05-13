@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { SecurityService } from 'src/app/appServices/security.service';
+import { ChangeDetectorRef, Component,Input, SimpleChanges } from '@angular/core';
+import { SecurityService } from 'src/app/appServices/security/security.service';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +7,20 @@ import { SecurityService } from 'src/app/appServices/security.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  /**
-   *
-   */
-  constructor(private auth:SecurityService) {
+  isAuth:boolean =false;
+  isCompany:boolean= false;
+
+constructor(private cdr: ChangeDetectorRef,public SecurityService:SecurityService) {
+
+}
+ngOnInit() {
+  this.SecurityService.isAuthenticated.subscribe(value => {
+    this.isAuth = value;
+  });
+  this.SecurityService.isCompanyLogin.subscribe(value => {
+    this.isCompany = value;
+  })
+}
 
 
-  }
-
-  authorized = this.auth.isAuthenticated();
 }

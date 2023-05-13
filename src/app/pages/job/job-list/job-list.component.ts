@@ -1,7 +1,5 @@
 import { Component,Input } from '@angular/core';
-import { IJob, JobStatus } from 'src/app/Interface/IDataTypes';
-import { JobDataService } from 'src/app/appServices/job-data.service';
-import { SecurityService } from 'src/app/appServices/security.service';
+import { IJob, JobClass, IJobStatus, ILocation, IJobType, IJobClasses } from 'src/app/Interface/IDataTypes';
 
 @Component({
   selector: 'app-job-list',
@@ -13,27 +11,55 @@ export class JobListComponent {
   role:string = '';
 
 
- constructor(private authenticate:SecurityService) {
 
-
- }
   @Input() jobs:IJob[]= [];
+  @Input() Featurejobs:IJob[]= [];
+
+  Feature ="Feature";
+  jobClasses= IJobClasses
+
+  JobLocation =location;
 
 
-
-
-
-  JobStatus = JobStatus;
-
-  getEnumTitle(value: number): string {
+  getLocationTitle(value: any): string {
     switch (value) {
-      case JobStatus.FullTime:
+      case ILocation.Lahore:
+        return 'Lahore';
+      case ILocation.Islamabad:
+        return 'Islamabad';
+      case ILocation.Karachi:
+        return 'Karachi';
+      case ILocation.Multan:
+        return 'Multan';
+      case ILocation.Hydarabad:
+        return 'Hydarabad';
+      case ILocation.Gujranwala:
+        return 'Gujranwala';
+      case ILocation.Faisalabad:
+        return 'Faisalabad';
+      case ILocation.Sialkot:
+        return 'Sialkot';
+      case ILocation.Peshawar:
+      return 'Peshawar';
+      default:
+        return 'Not Defined';
+    }
+  }
+
+  getJobTypeTitle(value: any): string {
+    switch (value) {
+      case IJobType.FullTime:
         return 'Full Time';
-      case JobStatus.PartTime:
-        return 'Part Time';
-      case JobStatus.Contract:
+      case IJobType.Freelance:
+        return 'Freelance';
+      case IJobType.Contract:
         return 'Contract';
-      // Add more cases for additional enum values
+      case IJobType.Internship:
+        return 'Internship';
+      case IJobType.Temporary:
+        return 'Temporary';
+      case IJobType.PartTime:
+        return 'Part Time';
       default:
         return 'Not Defined';
     }

@@ -1,0 +1,142 @@
+
+
+<div class="fluid-container TopContainer">
+  <div class="InnerData container">
+
+      <img src="{{employerById.companyLogo}}" class="company-logo"/>
+      <div>
+
+
+      <h1 class="company-title">{{employerById.companyName}}</h1>
+
+      <div class="job-location-container">
+        <button mat-mini-fab color="primary">
+          <mat-icon>location_on</mat-icon>
+        </button>
+        <span class="JobLocationText"> {{employerById.headquarters }} </span>
+
+        <button mat-mini-fab color="accent">
+          <mat-icon>business_center</mat-icon>
+        </button>
+        <span class="JobLocationText"> {{ "Open Jobs "}}{{(employerById.jobOffered ).length}} </span>
+
+        <button mat-mini-fab color="warn">
+          <mat-icon> watch_later</mat-icon>
+        </button>
+        <span class="JobLocationText"> {{ employerById.founded | date:' MMMM , yyyy'}} Founded</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="bottom-container container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="sidebar-container">
+        <h1>  Employer Detail </h1>
+        <hr>
+        <div class="sidebar-content">
+          <button mat-mini-fab color="primary">
+            <mat-icon>calendar_today</mat-icon>
+          </button>
+          <div class="innercontent-container">
+            <h2>Location</h2>
+            <p>{{employerById.headquarters}}</p>
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <button mat-mini-fab color="accent">
+            <mat-icon>location_on</mat-icon>
+          </button>
+          <div class="innercontent-container">
+            <h2>Member since:</h2>
+            <p>{{employerById.founded | date:'EEEE, MMMM dd, yyyy'}} </p>
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <button mat-mini-fab color="primary">
+            <mat-icon>supervisor_account</mat-icon>
+          </button>
+          <div class="innercontent-container">
+            <h2>Employees:</h2>
+            <p>{{employerById.companySize}}</p>
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <button mat-mini-fab color="warn">
+            <mat-icon>find_in_page</mat-icon>
+          </button>
+          <div class="innercontent-container">
+            <h2>WebSite URL:</h2>
+            <p>{{employerById.companyWebsite}} </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="detail-container">
+        <h1 class="companydetail-heading">Company Detail</h1>
+        <hr>
+        <p>{{employerById.companyAbout}}</p>
+      </div>
+
+      <div>
+
+    <div *ngIf="(employerById.jobOffered).length != 0;else noJob">
+
+      <h1 class="Job-heading">Job Offered By Company</h1>
+        <div *ngFor="let item of employerById.jobOffered">
+
+          <div *ngIf="item.deadLine <= currentDate">
+            <h1>thekndlksndlkfnskdf sdfsdfdsf</h1>
+          </div>
+
+              <div class="JobCards row">
+
+                <div class="col-md-5">
+                  <h4 class="jobTitle">{{ item.title }}</h4>
+                  <p class="companyName">Scriptbundle</p>
+                  <div class="JobLocation">
+                    <button mat-mini-fab color="primary">
+                      <mat-icon>location_on</mat-icon>
+                    </button>
+                  <span class="JobLocationText"> {{ getLocationTitle(item.location)}}</span>
+                    </div>
+
+                  <h4>Job Class</h4>
+                  <div class="jobClass">
+
+
+                    <div *ngFor="let classOfJob of item.allJobsClasses">
+
+                      <span *ngIf="classOfJob.jobClass.name === 'Feature'" class="JobClassFeature">Feature</span>
+                      <span *ngIf="classOfJob.jobClass.name === 'Urgent'" class="JobClassUrgent">Urgent</span>
+                      <span *ngIf="classOfJob.jobClass.name === 'Private'" class="JobClassPrivate">Private</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 jobTypes">
+                  <h4> <strong>Job Type: </strong> {{ getJobTypeTitle(item.type)}}</h4>
+                  <h4> <strong>Posted : </strong> {{item.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</h4>
+                  <h4> <strong>Deadline : </strong> {{item.deadLine | date:'EEEE, MMMM dd, yyyy'}}</h4>
+                </div>
+                <div class="col-md-2">
+                  <button color="primary"  [routerLink]="['/job/view-job/',item.id]"  mat-raised-button class="btnglobal">
+                    Apply Now
+                  </button>
+                </div>
+              </div>
+        </div>
+    </div>
+    <ng-template #noJob>
+      <div class="noJob-container">
+        <iframe src="https://embed.lottiefiles.com/animation/109013"></iframe>
+        <h2>No Jobs Posted Yet</h2>
+      </div>
+    </ng-template>
+   </div>
+  </div>
+</div>
+
+

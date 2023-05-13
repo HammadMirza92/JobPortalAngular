@@ -1,137 +1,105 @@
-<div class="top-bar">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-7 col-md-5 col-sm-5 col-xs-12">
-        <ul class="header-social pull-left">
-          <li>
+
+<nav class=" navbar navbar-expand-lg bg-body-tertiary stroke">
+
+
+    <div class="container">
+      <img src="./../../../assets/logo.png"  class=" navbar-brand logo"/>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item">
             <a
-              href="http://www.twitter.com"
-              class="social-twitter"
-              target="_blank"
-              ><i class="fab fa-twitter"></i
-            ></a>
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLinkActive="active"
+              routerLink="home"
+              >Home</a
+            >
           </li>
-          <li>
+          <li class="nav-item">
             <a
-              href="http://www.Instagram.com"
-              class="social-instagram"
-              target="_blank"
-              ><i class="fa fa-instagram"></i
-            ></a>
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLinkActive="active"
+              routerLink="job"
+              >Job</a
+            >
           </li>
-          <li>
+          <li class="nav-item">
             <a
-              href="http://www.LinkedIn.com"
-              class="social-linkedin"
-              target="_blank"
-              ><i class="fa fa-linkedin"></i
-            ></a>
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLinkActive="active"
+              routerLink="employers"
+              >Employers</a
+            >
           </li>
-          <li>
+          <li class="nav-item">
             <a
-              href="http://www.Behance.com"
-              class="social-behance"
-              target="_blank"
-              ><i class="fa fa-behance"></i
-            ></a>
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLinkActive="active"
+              routerLink="candidate"
+              >Candidate</a
+            >
           </li>
-          <li>
+          <ng-container *ngIf="isCompany">
+
+
+          <li class="nav-item">
             <a
-              href="http://www.Pintrest.com"
-              class="social-pinterest"
-              target="_blank"
-              ><i class="fa fa-pinterest"></i
-            ></a>
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLinkActive="active"
+              routerLink="Nice"
+              >Nice staff</a
+            >
           </li>
+        </ng-container>
+
+          <ng-container *ngIf="!isAuth;else samplecontent">
+            <li class="nav-item">
+              <a
+                [routerLinkActiveOptions]="{ exact: true }"
+                routerLinkActive="active"
+                routerLink="login"
+                >Login</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                [routerLinkActiveOptions]="{ exact: true }"
+                routerLinkActive="active"
+                routerLink="register"
+                >Register</a
+              >
+            </li>
+          </ng-container>
+          <ng-template #samplecontent>
+
+            <ng-container>
+              <li class="nav-item">
+                <a mat-icon-button [matMenuTriggerFor]="menu"> <mat-icon>account_circle</mat-icon></a>
+              </li>
+
+            </ng-container>
+          </ng-template>
+
         </ul>
-      </div>
-      <div class="col-lg-5 col-md-7 col-sm-7 col-xs-12">
-        <div class="header-info">
-          <a href="mailto:Support@domain.com"
-            ><i class="fa fa-envelope"></i>Support@domain.com</a
-          ><a href="tel:+92 333 1234567"
-            ><i class="fa fa-phone"></i> +92 333 1234567</a
-          >
-        </div>
+
       </div>
     </div>
-  </div>
-</div>
-<nav class="stroke">
-  <ul>
-    <li>
-      <a
-        [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="active"
-        routerLink="home"
-        >Home</a
-      >
-    </li>
-    <li>
-      <a
-        [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="active"
-        routerLink="Job"
-        >Job</a
-      >
-    </li>
-    <li>
-      <a
-        [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="active"
-        routerLink="create-job"
-        >Downloads</a
-      >
-    </li>
-    <li>
-      <a
-        [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="active"
-        routerLink="More"
-        >More</a
-      >
-    </li>
-    <li>
-      <a
-        [routerLinkActiveOptions]="{ exact: true }"
-        routerLinkActive="active"
-        routerLink="Nice"
-        >Nice staff</a
-      >
-    </li>
-
-    <ng-container *ngIf="!authorized">
-      <li>
-        <a
-          [routerLinkActiveOptions]="{ exact: true }"
-          routerLinkActive="active"
-          routerLink="login"
-          >Login</a
-        >
-      </li>
-      <li>
-        <a
-          [routerLinkActiveOptions]="{ exact: true }"
-          routerLinkActive="active"
-          routerLink="register"
-          >Register</a
-        >
-      </li>
-    </ng-container>
-    <ng-container *ngIf="authorized">
-      <li>
-
-        <h2>Hello, User</h2>
-      </li>
-      <li>
-        <a
-          [routerLinkActiveOptions]="{ exact: true }"
-          routerLinkActive="active"
-          routerLink="register"
-          >Logout</a
-        >
-      </li>
-    </ng-container>
-
-  </ul>
 </nav>
+
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item  routerLink="dashboard" class="dropdown-link">
+    <mat-icon>list_alt</mat-icon>
+    <span> <a>Dashboard</a></span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>exit_to_app</mat-icon>
+    <span><a (click)="SecurityService.logout()">Logout</a></span>
+  </button>
+</mat-menu>
+<!-- {{"user auth is "+ userAuthenticate}} -->
+
+

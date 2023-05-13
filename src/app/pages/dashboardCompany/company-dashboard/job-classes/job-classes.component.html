@@ -1,0 +1,16 @@
+<div class="main-container">
+
+
+<form [formGroup]="form">
+
+  <mat-form-field>
+    <mat-label>Select a Location</mat-label>
+    <mat-select formControlName="jobClasses">
+      <mat-option *ngFor="let jobClasses of jobClassesOptions" [value]="jobClasses.key">{{ jobClasses.value }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <button mat-raised-button color="primary" [disabled]="form.invalid" type="submit">Submit</button>
+</form>
+</div>

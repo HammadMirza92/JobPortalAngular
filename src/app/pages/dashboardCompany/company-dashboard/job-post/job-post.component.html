@@ -1,0 +1,91 @@
+
+<div class="form-container">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Icon</mat-label>
+      <input matInput formControlName="icon">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>description</mat-label>
+      <input matInput formControlName="description">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>responsibility</mat-label>
+      <input matInput formControlName="responsibility">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Select a Location</mat-label>
+      <mat-select formControlName="location">
+        <mat-option *ngFor="let location of locationOptions" [value]="location.key">{{ location.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Select a Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of typeOptions " [value]="type.key">{{ type.value  }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Select a Qualification</mat-label>
+      <mat-select formControlName="qualifications">
+        <mat-option *ngFor="let qualification of qualificationOptions" [value]="qualification.key">{{ qualification.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Select a Salary Type</mat-label>
+      <mat-select formControlName="salaryType">
+        <mat-option *ngFor="let salary of salaryOptions" [value]="salary.key">{{ salary.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>startBudget</mat-label>
+      <input matInput formControlName="startBudget">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>endBudget</mat-label>
+      <input matInput formControlName="endBudget">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Select a Job Experience</mat-label>
+      <mat-select formControlName="jobExperience">
+        <mat-option *ngFor="let jobExperience of jobExperienceOptions" [value]="jobExperience.key">{{ jobExperience.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Select a Job Shift</mat-label>
+      <mat-select formControlName="shift">
+        <mat-option *ngFor="let shift of shiftOptions" [value]="shift.key">{{ shift.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Select a Job Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let status of statusOptions" [value]="status.key">{{ status.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" >
+      <mat-label>Dead Line</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="deadLine">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Vacancy</mat-label>
+      <input matInput formControlName="vacancy" type="number">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
+
+</div>
+

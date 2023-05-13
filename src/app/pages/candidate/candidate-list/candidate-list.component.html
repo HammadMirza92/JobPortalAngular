@@ -1,0 +1,41 @@
+<span
+*ngIf="candidateData.length != 0; then ifBlock; else elseBlock"
+></span>
+
+<ng-template #ifBlock>
+  <div class="row">
+
+  <div class="candidate col-lg-5 col-md-5 col-sm-5 col-xs-12" *ngFor="let Candidate of candidateData">
+
+    <h2>{{Candidate.name}}</h2>
+    <h3>{{Candidate.experience}}</h3>
+    <div class="candidate-img-container">
+
+      <div class="candidate-logo">
+        <img src="{{Candidate.profileImg}}" class="img-responsive" alt="image">
+      </div>
+      <div class="candidate-location-container">
+
+        <p class="location"> {{ getLocationTitle(Candidate.location)}}</p>
+      </div>
+      <div class="skill-container" >
+        <div class="row">
+          <span *ngFor="let candidateSkill of Candidate.candidateSkills" class="skills">
+            {{candidateSkill.skills.jobSkill}}
+          </span>
+        </div>
+      </div>
+      <div class="candidate-view">
+        <a class="btn candidate-btn"  [routerLink]="['/candidate/candidate-detail/', Candidate.id]"> View Detail</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</ng-template>
+
+
+
+<ng-template #elseBlock>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>

@@ -17,6 +17,10 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 
 
@@ -40,6 +44,9 @@ import {MatSliderModule} from '@angular/material/slider';
     MatCheckboxModule,
     MatExpansionModule,
     MatSliderModule,
+    MatMenuModule,
+    MatStepperModule,
+    MatSnackBarModule
   ],
   exports:[
     MatToolbarModule,
@@ -58,6 +65,9 @@ import {MatSliderModule} from '@angular/material/slider';
     MatCheckboxModule,
     MatExpansionModule,
     MatSliderModule,
+    MatMenuModule,
+    MatStepperModule,
+    MatSnackBarModule
   ]
 })
 export class MatModule { }

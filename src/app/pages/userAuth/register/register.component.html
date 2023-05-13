@@ -1,13 +1,36 @@
-<h3>User Register</h3>
 
-<form (submit)="saveChanges()" [formGroup]="form" >
-  <mat-form-field appearance="outline" >
-      <mat-label>Name</mat-label>
-      <input formControlName="name" matInput />
-      <mat-error *ngIf="form.invalid">{{getErrorMessageFieldName()}}</mat-error>
-  </mat-form-field>
-  <div>
-      <button mat-flat-button color="primary" [disabled]="form.invalid">Save Changes</button>
-      <a mat-stroked-button routerLink="/home">Cancel</a>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 left">
+      <div class="Inner-container">
+        <img src="https://cdn.textstudio.com/output/sample/normal/3/5/1/5/company-logo-103-5153.png" class="logo">
+        <h2>Register as an Company</h2>
+        <button routerLink="employerRegister" class="custom-btn">Register Company</button>
+     </div>
+    </div>
+    <div class="col-md-6 right">
+      <div class="Inner-container">
+        <img src="https://cdn.textstudio.com/output/sample/normal/9/0/7/6/candidate-logo-73-6709.png" class="logo">
+        <h2>Register as an Candidate</h2>
+        <button routerLink="candidateregister" class="custom-btn">Register Candidate</button>
+     </div>
+    </div>
   </div>
-</form>
+
+
+<!-- <div class="split left">
+  <div class="centered">
+    <img src="img_avatar2.png" alt="Avatar woman">
+    <h2>Jane Flex</h2>
+    <p>Some text.</p>
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered">
+    <img src="img_avatar.png" alt="Avatar man">
+    <h2>John Doe</h2>
+    <p>Some text here too.</p>
+  </div>
+</div> -->
+</div>

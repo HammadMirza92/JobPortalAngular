@@ -1,0 +1,25 @@
+.my-toggle {
+  box-shadow: none;
+  background: white;
+  transition: all 0.5s ease-in-out;
+  /* border: 1px solid #eee; */
+}
+.title{
+  color: #000;
+  font-family: 'popins', sans-serif;
+  font-size:18px;
+  font-weight:500;
+  padding: 5px;
+}
+.sidebar{
+  box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.07);
+}
+.my-toggle {
+  border-radius: 0;
+  border-bottom: none;
+  padding: 15px 0px;
+  border: 1px solid #f7f7f7;
+}
+.panel{
+  border-color: 1px solid #000;
+}

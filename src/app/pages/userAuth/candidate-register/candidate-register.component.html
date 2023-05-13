@@ -1,0 +1,104 @@
+
+<div class="main-container">
+  <h1>Register as Candidate</h1>
+
+  <mat-stepper headerPosition="top" #stepper>
+    <mat-step [stepControl]="firstCandidateFormGroup">
+      <ng-template matStepLabel>Enter Email and Password</ng-template>
+      <div class="inner-container">
+      <form (submit)="userRegister(candidateUserRegister.value)" [formGroup]="candidateUserRegister" >
+        <mat-form-field appearance="outline" >
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput />
+
+        </mat-form-field>
+        <mat-form-field appearance="outline" >
+          <mat-label>Passowrd</mat-label>
+          <input formControlName="password" matInput type="password"/>
+      </mat-form-field>
+        <div>
+            <button matStepperNext mat-flat-button color="primary" [disabled]="candidateUserRegister.invalid">Next</button>
+        </div>
+      </form>
+    </div>
+    </mat-step>
+    <mat-step [stepControl]="secondCandidateFormGroup">
+      <ng-template matStepLabel>Enter Your Details</ng-template>
+      <div class="inner-container">
+        <form (submit)="candidateRegister(candidateDataRegister.value)" [formGroup]="candidateDataRegister" >
+          <mat-form-field appearance="outline" >
+              <mat-label>Your Name</mat-label>
+              <input formControlName="name" matInput />
+          </mat-form-field>
+          <mat-form-field appearance="outline" >
+            <mat-label>Profile Image</mat-label>
+            <input formControlName="profileImg" matInput />
+          </mat-form-field>
+          <mat-form-field appearance="outline" >
+            <mat-label>About Me</mat-label>
+            <input formControlName="aboutMe" matInput />
+          </mat-form-field>
+          <mat-form-field appearance="outline" >
+            <mat-label>Experience</mat-label>
+            <input formControlName="experience" matInput />
+          </mat-form-field>
+          <mat-form-field appearance="outline" >
+            <mat-label>Current Company / Fresh</mat-label>
+            <input formControlName="currentCompany" matInput />
+          </mat-form-field>
+          <mat-form-field appearance="outline" >
+            <mat-label>Phone</mat-label>
+            <input formControlName="phone" matInput  type="number"/>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Select a Location</mat-label>
+            <mat-select formControlName="location">
+              <mat-option *ngFor="let location of locationOptions" [value]="location.key">{{ location.value }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" >
+            <mat-label>Experience Time</mat-label>
+            <input formControlName="experienceTime" matInput type="number"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline" >
+            <mat-label>Expected Salary</mat-label>
+            <input formControlName="expectedSalary" matInput type="number"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline" >
+            <mat-label>Age</mat-label>
+            <input formControlName="age" matInput type="number"/>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Select a Qualification</mat-label>
+            <mat-select formControlName="qualification">
+              <mat-option *ngFor="let qualification of qualificationOptions" [value]="qualification.key">{{ qualification.value }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+              <button mat-flat-button  matStepperNext color="primary" [disabled]="candidateDataRegister.invalid">Next</button>
+          </div>
+        </form>
+
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Complete</ng-template>
+        <div class="done-container">
+          <h2> You are now done.</h2>
+          <iframe src="https://embed.lottiefiles.com/animation/113967"></iframe>
+          <button mat-flat-button color="primary" routerLink="/login">Please Login</button>
+        </div>
+    </mat-step>
+  </mat-stepper>
+
+
+
+
+  <div *ngIf="error ; else elseError">
+    <h3  style="color:red">{{error | json}}</h3>
+  </div>
+  <ng-template #elseError>
+
+  </ng-template>
+
+</div>

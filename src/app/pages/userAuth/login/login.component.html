@@ -1,1 +1,63 @@
-<p>login works!</p>
+<!-- <h3>User Login</h3>
+
+<form (submit)="saveChanges(form.value)" [formGroup]="form" >
+  <mat-form-field appearance="outline" >
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput />
+
+  </mat-form-field>
+  <mat-form-field appearance="outline" >
+    <mat-label>Passowrd</mat-label>
+    <input formControlName="password" matInput type="password"/>
+    <mat-error *ngIf="form.invalid">Password is required</mat-error>
+</mat-form-field>
+  <div>
+      <button mat-flat-button color="primary" [disabled]="form.invalid">Login</button>
+      <a mat-stroked-button routerLink="/home">Cancel</a>
+  </div>
+</form>
+<div *ngIf="error">
+  <h3  style="color:red">{{error | json}}</h3>
+</div> -->
+
+<div class="body">
+
+
+
+<div class="box-form">
+	<div class="left">
+		<div class="overlay">
+		<h1> Welcome Back !</h1>
+		<p>Get To Job Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		Curabitur et est sed felis aliquet sollicitudin</p>
+
+		</div>
+	</div>
+
+
+		<div class="right">
+
+		<h5 class="login-heading">Login</h5>
+
+      <form (submit)="saveChanges(form.value)" [formGroup]="form" >
+        <mat-form-field appearance="outline" >
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput />
+
+        </mat-form-field>
+        <mat-form-field appearance="outline" >
+          <mat-label>Passowrd</mat-label>
+          <input formControlName="password" matInput type="password"/>
+          <mat-error *ngIf="form.invalid">Password is required</mat-error>
+      </mat-form-field>
+        <div>
+            <button mat-flat-button color="primary" [disabled]="form.invalid">Login</button>
+            <!-- <a mat-stroked-button routerLink="/home">Cancel</a> -->
+        </div>
+      </form>
+		</div>
+
+
+
+</div>
+</div>

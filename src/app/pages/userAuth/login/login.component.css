@@ -1,0 +1,91 @@
+/* form{
+  max-width: 300px;
+
+}
+mat-form-field{
+  width: 100%;
+} */
+
+.body {
+  background-image: url('./../../../../assets/viewJobBg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'popins', sans-serif;
+  color: #333333;
+  padding: 160px 80px;
+}
+.box-form {
+  margin: 0 auto;
+  width: 80%;
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex: 1 1 100%;
+  align-items: stretch;
+  justify-content: space-between;
+  box-shadow: 0 0 20px 6px #090b6f85;
+}
+
+
+.box-form .left {
+  color: #FFFFFF;
+  overflow: hidden;
+}
+.box-form .left .overlay {
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(135deg, #00aeec 10%, #673ab7 100%);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.box-form .left .overlay h1 {
+  font-size: 6vmax;
+  line-height: 1;
+  font-weight: 900;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.box-form .left .overlay span p {
+  margin-top: 30px;
+  font-weight: 900;
+}
+
+.box-form .right {
+  padding: 80px 40px;
+  width: 40%;
+}
+.box-form .right h5 {
+  font-size: 3vmax;
+  margin-bottom: 40px;
+}
+.box-form .right p {
+  font-size: 14px;
+  color: #B0B3B9;
+}
+
+mat-form-field {
+  width: 100%;
+}
+button{
+  width: 100%!important;
+}
+@media (max-width: 980px) {
+  .box-form {
+    flex-flow: wrap;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+  }
+  .body {
+    padding: 60px 0px;
+  }
+  .box-form .right {
+    width: 100%;
+  }
+}
+.blue-snackbar {
+  background: #2196F3;
+}

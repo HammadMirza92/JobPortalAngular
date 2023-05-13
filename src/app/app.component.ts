@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { JobDataService } from './appServices/job-data.service';
+import { JobDataService } from './appServices/job/job-data.service';
+import { SecurityService } from './appServices/security/security.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,5 +8,10 @@ import { JobDataService } from './appServices/job-data.service';
 })
 export class AppComponent {
   title = 'JobPortal';
+
+  constructor(private securityService:SecurityService) {
+  }
+
+
 
 }

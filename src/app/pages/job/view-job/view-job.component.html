@@ -1,10 +1,150 @@
+<div class="fluid-container TopContainer">
+  <div class="InnerData container">
+    <div class="row" style="align-items: center;">
+      <div class="col-md-8">
+        <div class="jobClass">
+          <div *ngFor="let classOfJob of JobById.allJobsClasses">
+            <span *ngIf="classOfJob.jobClass.name === 'Feature'" class="JobClassFeature">Feature</span>
+            <span *ngIf="classOfJob.jobClass.name === 'Urgent'" class="JobClassUrgent">Urgent</span>
+            <span *ngIf="classOfJob.jobClass.name === 'Private'" class="JobClassPrivate">Private</span>
+          </div>
+      </div>
+        <h1 class="jobTitle">{{JobById.title}}</h1>
+        <div class="job-location-container">
+          <button mat-mini-fab color="primary">
+            <mat-icon>location_on</mat-icon>
+          </button>
+          <span class="JobLocationText"> {{ getLocationTitle(JobById.location)}} </span>
+
+          <button mat-mini-fab color="accent">
+            <mat-icon>business_center</mat-icon>
+          </button>
+          <span class="JobLocationText"> {{ getjobTypeTitle(JobById.type)}} </span>
+
+          <button mat-mini-fab color="warn">
+            <mat-icon> watch_later</mat-icon>
+          </button>
+          <span class="JobLocationText"> {{ JobById.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <button class="apply-now-btn" (click)="applyNow(JobById.id)" >
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container job-information-row">
+  <div class="row">
+    <div class="col-md-9 ">
+      <div class="job-information-container">
+      <h1>Job Information</h1>
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="job-information">
+            <img src="./../../../../assets/tick-icon.png" class="job-information-img"/>
+            <div>
+              <p class="job-information-innerHeading">Salary</p>
+              <p class="job-information-innerContent">$ {{ JobById.startBudget }}-{{ JobById.endBudget }} / {{getsalaryTypeTitle(JobById.salaryType)}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 ">
+          <div class="job-information">
+            <img src="./../../../../assets/tick-icon.png" class="job-information-img"/>
+            <div>
+              <p class="job-information-innerHeading">Shift</p>
+              <p class="job-information-innerContent">{{getjobShiftTitle(JobById.jobShift)}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row job-information-row">
+        <div class="col-md-6 ">
+          <div class="job-information">
+            <img src="./../../../../assets/tick-icon.png" class="job-information-img"/>
+            <div>
+              <p class="job-information-innerHeading">No. of Openings</p>
+              <p class="job-information-innerContent">{{JobById.vacancy}}</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-6 ">
+          <div class="job-information">
+            <img src="./../../../../assets/tick-icon.png" class="job-information-img"/>
+            <div>
+              <p class="job-information-innerHeading">Job Qualifications</p>
+              <p class="job-information-innerContent">{{getqualificationTitle(JobById.qualifications)}}</p>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="row job-information-row">
+      <div class="col-md-6 ">
+        <div class="job-information">
+          <img src="./../../../../assets/tick-icon.png" class="job-information-img"/>
+          <div>
+            <p class="job-information-innerHeading">Job Experience :</p>
+            <p class="job-information-innerContent">{{getJobExpTitle(JobById.jobExperience)}}</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6 ">
+        <div class="job-information">
+          <img src="./../../../../assets/tick-icon.png" class="job-information-img"/>
+          <div>
+            <p class="job-information-innerHeading">Job Location</p>
+            <p class="job-information-innerContent">{{ getLocationTitle(JobById.location)}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-deatil-container">
+      <h1>Job Description</h1>
+      <p>{{JobById.description}} </p>
+    </div>
+
+    <div class="job-deatil-container">
+      <h1>Job Responsibility</h1>
+      <p>{{JobById.responsibility}} </p>
+    </div>
+
+
+    </div>
+
+  </div>
+
+    <div class="col-md-3">
+      <div class="company-profile">
+        <img src="{{JobById.employer.companyLogo}}" class="company-logo"/>
+        <h3 class="company-title">{{JobById.employer.companyName}}</h3>
+        <button class="apply-now-btn"  [routerLink]="['/employers/employer-detail/', JobById.employer.id]" >
+          View Detail
+        </button>
+      </div>
+
+      <div class="job-skills"  >
+        <h3 class="company-title">Job Tags</h3>
+        <div style="display: flex; flex-direction: row; ">
+
+        <div *ngFor="let skills of JobById.jobSkills">
+          <span class="skill-container">    {{skills.skill.jobSkill }}</span>
+        </div>
+      </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 
-property id is {{propertyId}}
-
-
-  <h1>{{JobById.title}}</h1>
-
-
-<button class="btn btn-success" (click)="onBack()">Go Back</button>
+<!--
+<button class="btn btn-success" (click)="onBack()">Go Back</button> -->

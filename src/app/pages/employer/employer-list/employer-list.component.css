@@ -1,0 +1,112 @@
+.company {
+  margin-bottom: 30px;
+}
+.company .company-img {
+  position: relative;
+  padding: 30px 20px;
+
+}
+.company .company-img:before {
+  background: rgba(0, 0, 0, 0.8);
+  background: linear-gradient(to right, rgba(0, 40, 70, 0.8), rgba(0, 0, 0, 0.8));
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  border-radius: 5px 5px 0px 0px;
+}
+.company .company-img .company-logo {
+  position: relative;
+  overflow: hidden;
+}
+a {
+  outline: none !important;
+  color: #FFF;
+  text-decoration: none;
+}
+.company .company-img .company-logo img {
+  margin: 0 auto;
+  display: block;
+  background-color: #FFF;
+  border-radius: 50%;
+  max-width: 80px;
+  max-height: 80px;
+  min-width: 80px;
+  min-height: 80px;
+}
+.company .company-title {
+  position: relative;
+  overflow: hidden;
+}
+
+.company .company-img .company-title h3 {
+  margin-top: 20px;
+  margin-bottom: 0;
+  position: relative;
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+}
+ .company .company-img .company-title p {
+  color: #FFF;
+  text-align: center;
+  font-size: 14px;
+}
+
+.company .company-img .company-title p i {
+    margin-right: 5px;
+    font-size: 18px;
+}
+ .company .company-img .company-view {
+  position: absolute;
+  bottom: -18px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 153px;
+  z-index: 1;
+}
+
+ .company .company-img .company-view a {
+  background: #FFF;
+  padding: 6px 30px;
+  color: #233d7b;
+  border-radius: 50px;
+
+}
+.n-btn-rounded {
+  border-color: #233d7b;
+}
+
+.btn {
+  padding: 13px 30px;
+  box-shadow: none;
+}
+.company .company-bottom {
+  text-align: center;
+  padding: 40px 20px 20px 20px;
+  position: relative;
+  box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.07);
+  background-color: #FFF;
+  border-radius: 0px 0px 5px 5px;
+}
+.company .company-bottom .social-links {
+  position: relative;
+  overflow: hidden;
+}
+.list-inline {
+  padding-left: 0;
+  list-style: none;
+  margin-left: -5px;
+}
+ .company .company-bottom .social-links li {
+  margin: 5px;
+  display: inline-block;
+}
+.company .company-bottom .social-links li img {
+  width: 30px;
+}

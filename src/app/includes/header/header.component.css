@@ -3,9 +3,11 @@ nav {
   margin: 0 auto;
   background: #fff;
   padding: 10px 0px 5px 0px;
-  -webkit-box-shadow: 1px 2px 25px -12px rgba(199,199,199,1);
--moz-box-shadow: 1px 2px 25px -12px rgba(199,199,199,1);
-box-shadow: 1px 2px 25px -12px rgba(199,199,199,1);
+  display: flex;
+  box-shadow: 1px 2px 25px -12px rgba(199,199,199,1);
+  position: fixed;
+  z-index: 9;
+
 }
 
 nav ul {
@@ -21,6 +23,8 @@ nav ul li a {
   text-decoration: none;
   color: black;
   margin: 0 10px;
+  font-family: 'popins', sans-serif;
+  font-weight: 500;
 }
 nav ul li a,
 nav ul li a:after,
@@ -29,9 +33,12 @@ nav ul li a:before {
 }
 nav ul li a:hover {
   color: #673ab7;
+  font-weight: bold;
+  cursor: pointer!important;
 }
 nav ul li a.active {
   color: #673ab7;
+  font-weight: bold;
 }
 
 /* By Dominik Biedebach @domobch */
@@ -64,31 +71,12 @@ nav.stroke ul li a.active:after {
   width: 100%;
 }
 
-
-
-.top-bar {
-  background-color: #242424;
+.logo{
+  width: 180px;
+  border-radius: 5px;
+  margin-right: 20%;
 }
-
-.top-bar ul.header-social>li {
-  display: inline-block;
-  margin-right: 1px;
-  text-align: center;
+.dropdown-link{
+  text-decoration: none;
+  color: #242424;
 }
-.top-bar ul.header-social>li>a {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  display: inline-block;
-  font-size: 16px;
-
-  line-height: 60px;
-  margin-left: 5.5px;
-  margin-right: 5.5px;
-  transition: background-color 0.4s ease-in-out 0s;
-  width: 50px;
-}
-.top-bar ul.header-social>li>a.social-twitter:hover {
-  background-color: #1bb6ec;
-}
-
-

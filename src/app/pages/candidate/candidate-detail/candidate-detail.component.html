@@ -1,0 +1,138 @@
+<div class="fluid-container TopContainer">
+  <div class="InnerData container">
+
+
+      <img src="{{candidateById.profileImg}}" class="candidate-logo"/>
+      <div>
+
+
+      <h1 class="candidate-title">{{candidateById.name}}</h1>
+
+      <div class="candidate-info-container">
+        <button mat-mini-fab color="primary">
+          <mat-icon>location_on</mat-icon>
+        </button>
+        <span class="candidate-info-text"> {{getLocationTitle(candidateById.location) }} </span>
+
+        <button mat-mini-fab color="accent">
+          <mat-icon>timeline</mat-icon>
+        </button>
+        <span class="candidate-info-text"> {{"Experience Time : " + candidateById.experienceTime }} Years </span>
+
+        <button mat-mini-fab color="warn">
+          <mat-icon> book</mat-icon>
+        </button>
+        <span class="candidate-info-text"> {{ "Qualification : " + getqualificationTitle(candidateById.qualification) }}</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="bottom-container container">
+
+  <div class="row">
+
+    <div class="col-md-4">
+      <div class="sidebar-container">
+        <h1>  Employer Detail </h1>
+        <hr>
+        <div class="sidebar-content">
+          <button mat-mini-fab color="primary">
+            <mat-icon>local_phone</mat-icon>
+          </button>
+          <div class="innercontent-container">
+            <h2>Phone:</h2>
+            <p>{{candidateById.phone}}</p>
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <button mat-mini-fab color="accent">
+            <mat-icon>accessibility_new</mat-icon>
+          </button>
+          <div class="innercontent-container">
+            <h2>Experience:</h2>
+            <p>{{candidateById.experience}} </p>
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <button mat-mini-fab color="primary">
+            <mat-icon>monetization_on</mat-icon>
+          </button>
+          <div class="innercontent-container">
+            <h2>Expected Salary:</h2>
+            <p>{{candidateById.expectedSalary}}</p>
+          </div>
+        </div>
+        <div class="sidebar-content">
+          <button mat-mini-fab color="warn">
+            <mat-icon>book</mat-icon>
+          </button>
+          <div class="innercontent-container">
+            <h2>Qualification:</h2>
+            <p>{{getqualificationTitle(candidateById.qualification)}} </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="detail-container">
+        <h1 class="candidate-heading">About Me</h1>
+        <hr>
+        <p>{{candidateById.aboutMe}}</p>
+      </div>
+
+      <div class="jobApplied-contaienr" *ngIf="appliedJobs!=null">
+        <h2 class="Job-heading" *ngIf="appliedJobs !=null">Applied Jobs</h2>
+        <hr>
+
+        <div *ngFor="let appliedJob of appliedJobs" >
+
+          <div class="featureCards row">
+            <div class="col-md-5">
+              <h4 class="jobTitle">{{ appliedJob.job.title }}</h4>
+              <p class="companyName">Scriptbundle</p>
+              <div class="JobLocation">
+                <button mat-mini-fab color="primary">
+                  <mat-icon>location_on</mat-icon>
+                </button>
+              <span class="JobLocationText"> {{ getLocationTitle(appliedJob.job.location)}}</span>
+              </div>
+
+              <h4>Job Class</h4>
+              <div class="jobClass">
+
+
+                <div *ngFor="let classOfJob of appliedJob.job.allJobsClasses">
+                  <span *ngIf="classOfJob.jobClass.name === jobClasses.Feature" class="JobClassFeature">Feature</span>
+                  <span *ngIf="classOfJob.jobClass.name === jobClasses.Urgent" class="JobClassUrgent">Urgent</span>
+                  <span *ngIf="classOfJob.jobClass.name === jobClasses.Private" class="JobClassPrivate">Private</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 jobTypes">
+              <h4> <strong>Job Type: </strong> {{ getJobTypeTitle(appliedJob.job.type)}}</h4>
+              <h4> <strong>Posted : </strong> {{appliedJob.job.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</h4>
+              <h4> <strong>Deadline : </strong> {{appliedJob.job.deadLine | date:'EEEE, MMMM dd, yyyy'}}</h4>
+            </div>
+            <div class="col-md-2">
+              <!-- <button color="primary" [routerLink]="['/job/view-job/', appliedJob.job.id]"  mat-raised-button class="btnglobal">
+                View Detail
+              </button> -->
+            </div>
+          </div>
+      </div>
+      </div>
+      <div class="jobApplied-contaienr" *ngIf="appliedJobs==null">
+        <h1>No job applications have been submitted yet</h1>
+        <iframe src="https://embed.lottiefiles.com/animation/106840"></iframe>
+      </div>
+    <div>
+
+
+   </div>
+  </div>
+</div>
+
+
+

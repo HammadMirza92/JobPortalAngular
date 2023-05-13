@@ -1,237 +1,130 @@
 <span
-*ngIf="jobs.length != 0; then ifBlock; else elseBlock"
+*ngIf="jobs.length != 0 || Featurejobs.length!=0; then ifBlock; else elseBlock"
 ></span>
 
-<!-- Fetch Job Data -->
 
 <ng-template #ifBlock>
-<mat-tab-group>
-  <!--Start All Jobs Tab -->
-  <mat-tab label="All Jobs" >
-    <div *ngFor="let item of jobs" style="display: flex;justify-content: center;">
-      <mat-card class="cardss" (click)="functionCalled(item.title)">
-        <mat-card-header>
-          <div class="row" >
-            <div class="col-md-2 col-sm-3" >
-              <img
-                class="flex-shrink-0 img-fluid border rounded"
-                src="{{ item.icon }}"
-                style="max-width: 80px; max-height: 80px;"
-              />
+  <!--Start Feature Jobs Tab -->
+  <h2 class="Job-heading" *ngIf="Featurejobs !=null">Premium Jobs</h2>
+    <div *ngFor="let job of Featurejobs" >
+
+        <div class="featureCards row">
+          <div class="col-md-5">
+            <h4 class="jobTitle">{{ job.title }}</h4>
+            <p class="companyName">Scriptbundle</p>
+            <div class="JobLocation">
+              <button mat-mini-fab color="primary">
+                <mat-icon>location_on</mat-icon>
+              </button>
+            <span class="JobLocationText"> {{ getLocationTitle(job.location)}}</span>
             </div>
-            <div class="col-md-8 col-sm-9" style="display: flex;">
-              <div style="flex: 1">
-                <mat-card-title> {{ item.title }}</mat-card-title>
-                <div class="jobCardContent">
-                  <div class="jobCardContent">
-                    <button mat-mini-fab color="primary">
-                      <mat-icon>location_on</mat-icon>
-                    </button>
-                    <div class="JobIcon">
-                      <h3>{{ item.location }}</h3>
-                    </div>
-                  </div>
 
-                  <div class="jobCardContent">
-                    <button
-                      mat-mini-fab
-                      color="accent"
-                      class="job-button"
-                    >
-                      <mat-icon>watch_later</mat-icon>
-                    </button>
-                    <div class="JobIcon">
-                      <h3>{{ getEnumTitle(item.status) }}</h3>
-                    </div>
-                  </div>
+            <h4>Job Class</h4>
+            <div class="jobClass">
 
-                  <div class="jobCardContent">
-                    <button mat-mini-fab color="warn">
-                      <mat-icon> attach_money</mat-icon>
-                    </button>
-                    <div class="JobIcon">
-                      <h3>${{ item.startBudget }}_</h3>
-                      <h3> ${{ item.endBudget }}</h3>
-                    </div>
-                  </div>
-                </div>
+
+              <div *ngFor="let classOfJob of job.allJobsClasses">
+                <span *ngIf="classOfJob.jobClass.name === jobClasses.Feature" class="JobClassFeature">Feature</span>
+                <span *ngIf="classOfJob.jobClass.name === jobClasses.Urgent" class="JobClassUrgent">Urgent</span>
+                <span *ngIf="classOfJob.jobClass.name === jobClasses.Private" class="JobClassPrivate">Private</span>
               </div>
-
-
-            </div>
-            <div class="col-md-2" >
-              <button
-                color="primary"
-                routerLink="view-job/{{ item.id }}"
-                mat-raised-button
-                class="btnglobal"
-              >
-                View Detail
-              </button>
-              <button class="btnglobal" color="warn" mat-raised-button>
-                Apply Now
-              </button>
             </div>
           </div>
-        </mat-card-header>
-      </mat-card>
+          <div class="col-md-5 jobTypes">
+            <h4> <strong>Job Type: </strong> {{ getJobTypeTitle(job.type)}}</h4>
+            <h4> <strong>Posted : </strong> {{job.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</h4>
+            <h4> <strong>Deadline : </strong> {{job.deadLine | date:'EEEE, MMMM dd, yyyy'}}</h4>
+          </div>
+          <div class="col-md-2">
+            <button color="primary" [routerLink]="['/job/view-job/', job.id]"  mat-raised-button class="btnglobal">
+              View Detail
+            </button>
+          </div>
+        </div>
     </div>
-  </mat-tab>
-  <!--End All Jobs Tab -->
-
-  <!--Start Full Jobs Tab -->
-  <mat-tab label="Full Time" >
-    <div *ngFor="let item of jobs"  >
-      <div *ngIf="item.status == JobStatus.FullTime"  style="display: flex;justify-content: center;">
-        <mat-card class="cardss" (click)="functionCalled(item.title)">
-          <mat-card-header>
-            <div class="row" >
-              <div class="col-md-2 col-sm-3" >
-                <img
-                  class="flex-shrink-0 img-fluid border rounded"
-                  src="{{ item.icon }}"
-                  style="max-width: 100%; max-height: 100%;"
-                />
-              </div>
-              <div class="col-md-8 col-sm-9" style="display: flex;">
-                <div style="flex: 1">
-                  <mat-card-title> {{ item.title }}</mat-card-title>
-                  <div class="jobCardContent">
-                    <div class="jobCardContent">
-                      <button mat-mini-fab color="primary">
-                        <mat-icon>location_on</mat-icon>
-                      </button>
-                      <div class="JobIcon">
-                        <h3>{{ item.location }}</h3>
-                      </div>
-                    </div>
-
-                    <div class="jobCardContent">
-                      <button
-                        mat-mini-fab
-                        color="accent"
-                        class="job-button"
-                      >
-                        <mat-icon>watch_later</mat-icon>
-                      </button>
-                      <div class="JobIcon">
-                        <h3>{{ getEnumTitle(item.status) }}</h3>
-                      </div>
-                    </div>
-
-                    <div class="jobCardContent">
-                      <button mat-mini-fab color="warn">
-                        <mat-icon> attach_money</mat-icon>
-                      </button>
-                      <div class="JobIcon">
-                        <h3>${{ item.startBudget }}_</h3>
-                        <h3> ${{ item.endBudget }}</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
 
-              </div>
-              <div class="col-md-2" >
-                <button
-                  color="primary"
-                  routerLink="view-job/{{ item.id }}"
-                  mat-raised-button
-                  class="btnglobal"
-                >
-                  View Detail
-                </button>
-                <button class="btnglobal" color="warn" mat-raised-button>
-                  Apply Now
-                </button>
+
+  <!--End Feature  Jobs Tab -->
+
+  <!-- Fetch All Jobs Data -->
+
+    <div *ngFor="let job of jobs"  >
+
+      <div class="JobCards row" *ngIf="job.allJobsClasses.length == 0">
+
+        <div class="col-md-5">
+          <h4 class="jobTitle">{{ job.title }}</h4>
+          <p class="companyName">Scriptbundle</p>
+          <div class="JobLocation">
+            <button mat-mini-fab color="primary">
+              <mat-icon>location_on</mat-icon>
+            </button>
+          <span class="JobLocationText"> {{ getLocationTitle(job.location)}}</span>
+          </div>
+        </div>
+        <div class="col-md-5 jobTypes">
+          <h4> <strong>Job Type: </strong> {{ getJobTypeTitle(job.type)}}</h4>
+          <h4> <strong>Posted : </strong> {{job.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</h4>
+          <h4> <strong>Deadline : </strong> {{job.deadLine | date:'EEEE, MMMM dd, yyyy'}}</h4>
+        </div>
+        <div class="col-md-2">
+          <button color="primary"  [routerLink]="['/job/view-job/', job.id]"  mat-raised-button class="btnglobal">
+            Apply Now
+          </button>
+        </div>
+      </div>
+
+      <div *ngFor="let item of job.allJobsClasses">
+
+       <h2 class="Job-heading">Regular Jobs</h2>
+
+
+        <div class="JobCards row">
+
+          <div class="col-md-5">
+            <h4 class="jobTitle">{{ job.title }}</h4>
+            <p class="companyName">Scriptbundle</p>
+            <div class="JobLocation">
+              <button mat-mini-fab color="primary">
+                <mat-icon>location_on</mat-icon>
+              </button>
+            <span class="JobLocationText"> {{ getLocationTitle(job.location)}}</span>
+            </div>
+
+            <h4>Job Class</h4>
+            <div class="jobClass">
+
+
+              <div *ngFor="let classOfJob of job.allJobsClasses">
+                <span *ngIf="classOfJob.jobClass.name === jobClasses.Urgent" class="JobClassUrgent">Urgent</span>
+                <span *ngIf="classOfJob.jobClass.name === jobClasses.Private" class="JobClassPrivate">Private</span>
               </div>
             </div>
-          </mat-card-header>
-        </mat-card>
+          </div>
+          <div class="col-md-5 jobTypes">
+            <h4> <strong>Job Type: </strong> {{ getJobTypeTitle(job.type)}}</h4>
+            <h4> <strong>Posted : </strong> {{job.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</h4>
+            <h4> <strong>Deadline : </strong> {{job.deadLine | date:'EEEE, MMMM dd, yyyy'}}</h4>
+          </div>
+          <div class="col-md-2">
+            <button color="primary"  [routerLink]="['/job/view-job/', job.id]"  mat-raised-button class="btnglobal">
+              View Detail
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </mat-tab>
-  <!--End Full Jobs Tab -->
-
-  <!--Start Part Time Jobs Tab -->
-  <mat-tab label="Part Time">
-    <div *ngFor="let item of jobs" >
-      <div *ngIf="item.status == JobStatus.PartTime"  style="display: flex;justify-content: center;">
-        <mat-card class="cardss" (click)="functionCalled(item.title)">
-          <mat-card-header>
-            <div class="row" >
-              <div class="col-md-2 col-sm-3" >
-                <img
-                  class="flex-shrink-0 img-fluid border rounded"
-                  src="{{ item.icon }}"
-                  style="max-width: 100%; max-height: 100%;"
-                />
-              </div>
-              <div class="col-md-8 col-sm-9" style="display: flex;">
-                <div style="flex: 1">
-                  <mat-card-title> {{ item.title }}</mat-card-title>
-                  <div class="jobCardContent">
-                    <div class="jobCardContent">
-                      <button mat-mini-fab color="primary">
-                        <mat-icon>location_on</mat-icon>
-                      </button>
-                      <div class="JobIcon">
-                        <h3>{{ item.location }}</h3>
-                      </div>
-                    </div>
-
-                    <div class="jobCardContent">
-                      <button
-                        mat-mini-fab
-                        color="accent"
-                        class="job-button"
-                      >
-                        <mat-icon>timelapse</mat-icon>
-                      </button>
-                      <div class="JobIcon">
-                        <h3>{{ getEnumTitle(item.status) }}</h3>
-                      </div>
-                    </div>
-
-                    <div class="jobCardContent">
-                      <button mat-mini-fab color="warn">
-                        <mat-icon> attach_money</mat-icon>
-                      </button>
-                      <div class="JobIcon">
-                        <h3>${{ item.startBudget }}_</h3>
-                        <h3> ${{ item.endBudget }}</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
 
-              </div>
-              <div class="col-md-2" >
-                <button
-                  color="primary"
-                  routerLink="view-job/{{ item.id }}"
-                  mat-raised-button
-                  class="btnglobal"
-                >
-                  View Detail
-                </button>
-                <button class="btnglobal" color="warn" mat-raised-button>
-                  Apply Now
-                </button>
-              </div>
-            </div>
-          </mat-card-header>
-        </mat-card>
-      </div>
-    </div>
-  </mat-tab>
 
-  <!--Start Part Time Jobs Tab -->
-</mat-tab-group>
+  <!-- End Fetch All Jobs Data -->
 </ng-template>
-<!-- Loader if Job Data not found or miss -->
+
+
 <ng-template #elseBlock>
-<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </ng-template>
+
+
+

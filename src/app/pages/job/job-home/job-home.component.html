@@ -1,19 +1,32 @@
 
 
-<div class="fluid-container" style="margin: 20px">
+<div class="container job-home-container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
       <!-- Column 1 content here -->
       <div ngbRow>
         <div class="container">
+          <aside class="sidebar">
           <form [formGroup]="profileForm">
-            <!-- <mat-card>
-            <mat-card-header>
-              <mat-card-title class="card-title">
-                Search Job
-              </mat-card-title>
-            </mat-card-header>
-            <mat-card-content> -->
+
+            <mat-accordion class="panel">
+              <mat-expansion-panel class="my-toggle">
+                <mat-expansion-panel-header matExpansionToggleIcon="arrow_drop" class="white-icon-header">
+                  <mat-panel-title class="title">
+                    <span class="toggle-icon"></span>
+                    Search by Job Keyword
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-form-field appearance="outline" style="width: 100%">
+                  <mat-label>Job Title</mat-label>
+                  <input
+                    formControlName="jobTitle"
+                    matInput
+                    placeholder="Enter Job TitleS"
+                  />
+                </mat-form-field>
+              </mat-expansion-panel>
+            </mat-accordion>
 
             <mat-accordion>
               <mat-expansion-panel class="panel-content">
@@ -140,15 +153,20 @@
             <!-- </mat-card-actions>
           </mat-card> -->
           </form>
+        </aside>
         </div>
       </div>
     </div>
-    <div class="col-md-9">
-      <h3 class="jobHeading">Jobs</h3>
-
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+      <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">GetToJob</li>
+          <li class="breadcrumb-item active" aria-current="page">Jobs</li>
+        </ol>
+      </nav>
       <!-- Column 2 content here -->
       <div ngbRow>
-       <app-job-list [jobs]="AllJobdata" ></app-job-list>
+       <app-job-list [jobs]="AllJobdata"  [Featurejobs]="FeatureJobdata"></app-job-list>
       </div>
     </div>
   </div>
@@ -158,16 +176,3 @@
   {{dataFromHtp}}
 </div>
 
-
-<ng-container ></ng-container>
-
-
-<div *ngIf="authenticated() === 'admin'">
-  <h2>Authorized</h2>
-</div>
-
-<div>
-  <h2> Not Authorized</h2>
-</div>
-
-<button (click)="authenticated()">Check Token</button>

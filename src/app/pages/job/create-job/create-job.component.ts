@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { JobStatus } from 'src/app/Interface/IDataTypes';
+import { IJobStatus } from 'src/app/Interface/IDataTypes';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { JobStatus } from 'src/app/Interface/IDataTypes';
 export class CreateJobComponent {
 
   creatJobForm:any;
-  JobStatus = Object.keys(JobStatus).values;
+  JobStatus = Object.keys(IJobStatus).values;
 
 
 
