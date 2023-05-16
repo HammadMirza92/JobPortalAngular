@@ -17,7 +17,7 @@ export class EmployerServiceService {
     return this.http.get<IEmployer[]>(this.basURL+ "/api/employer");
   }
 
-  fetchEmployer(id:number) {
+  fetchEmployer(id:string) {
     const token = this.SecurityServices.getToken();
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(this.basURL+ "/api/employer/"+id);

@@ -35,7 +35,6 @@ constructor(private router: Router,
   form: FormGroup = new FormGroup({});
 
 
-
   locationOptions =
   [ { value: "Lahore",key : ILocation.Lahore },
     { value: "Islamabad",key : ILocation.Islamabad },
@@ -113,6 +112,8 @@ constructor(private router: Router,
 
       this.jobService.postJob( this.form.value).subscribe((data)=>{
         console.log("job data is",data);
+        this.snackBar.open('Job Post Successfully', 'Close', { duration: 3000 });
+        this.router.navigate(['/job']);
       },error=>this.error = error);
     } else {
       this.snackBar.open('Please fill in all required fields', 'Close', { duration: 3000 });

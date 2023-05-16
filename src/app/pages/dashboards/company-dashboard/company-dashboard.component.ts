@@ -2,20 +2,25 @@ import { Component } from '@angular/core';
 import { EmployerServiceService } from 'src/app/appServices/employer/employer-service.service';
 import { SecurityService } from 'src/app/appServices/security/security.service';
 
+
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-company-dashboard',
+  templateUrl: './company-dashboard.component.html',
+  styleUrls: ['./company-dashboard.component.css']
 })
-export class DashboardComponent {
+export class CompanyDashboardComponent {
   isAuthenticated = false;
-  employerId:number=0;
+  employerId:any;
   employerById:any;
+
   constructor(private Security:SecurityService,private employerService:EmployerServiceService) {
-    this.employerId = Number(this.Security.getCurrentemployerId());
+    this.employerId = this.Security.getCurrentemployerId();
    employerService.fetchEmployer(this.employerId).subscribe((data) => this.employerById =data);
   }
 
+  logout(){
+    debugger;
+    this.Security.logout();
+  }
 
-  email = this.Security.crntUserEmail();
 }

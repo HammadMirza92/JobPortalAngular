@@ -1,25 +1,27 @@
-import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { IJobType, ILocation } from 'src/app/Interface/IDataTypes';
-import { IEmployer } from 'src/app/Interface/IEmployer';
 import { EmployerServiceService } from 'src/app/appServices/employer/employer-service.service';
+import { JobDataService } from 'src/app/appServices/job/job-data.service';
+import { SecurityService } from 'src/app/appServices/security/security.service';
 
 @Component({
-  selector: 'app-employer-detail',
-  templateUrl: './employer-detail.component.html',
-  styleUrls: ['./employer-detail.component.css']
+  selector: 'app-company-dashboard-index',
+  templateUrl: './company-dashboard-index.component.html',
+  styleUrls: ['./company-dashboard-index.component.css']
 })
-export class EmployerDetailComponent {
-
+export class CompanyDashboardIndexComponent {
   employerId:any;
   employerById:any;
-  currentDate:any;
+  jobs:any;
 
-  constructor(private router:ActivatedRoute , private routing:Router,private employerService:EmployerServiceService) {
-    this.employerId = this.router.snapshot.params['id'];
-   employerService.fetchEmployer(this.employerId).subscribe((data) => this.employerById =data);
+  constructor( private routing:Router,private employerService:EmployerServiceService,private securityServicse:SecurityService,private jobService:JobDataService) {
+
+    this.employerId = securityServicse.getCurrentemployerId();
+    employerService.fetchEmployer(this.employerId).subscribe((data) => this.employerById =data);
+    this.jobService.fetchAppliedJobs(this.employerId).subscribe((data)=> this.jobs = data);
   }
+
 
   getLocationTitle(value: any): string {
     switch (value) {

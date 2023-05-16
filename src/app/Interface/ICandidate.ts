@@ -2,7 +2,7 @@ import { IAppliedJobs } from "./IAppliedJobs";
 import { IJobSkills, ILocation, IQualification } from "./IDataTypes";
 
 export interface ICandidate {
-  id:number,
+  id:string,
   name:string,
   profileImg:string,
   aboutMe:string,
@@ -20,15 +20,15 @@ export interface ICandidate {
 }
 
 export interface ICandidateSkills{
-  id:number,
-  candidateId:number,
+  id:string,
+  candidateId:string,
   candidate:ICandidate,
-  skillId:number,
+  skillId:string,
   skills:ISkills
 }
 
 export interface ISkills{
-  id:number,
+  id:string,
   jobSkill:string,
   candidateSkills:ICandidateSkills,
   jobSkills:IJobSkills,

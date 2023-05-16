@@ -1,11 +1,7 @@
-<span
-*ngIf="jobs.length != 0 || Featurejobs.length!=0; then ifBlock; else elseBlock"
-></span>
-
-
-<ng-template #ifBlock>
+<div *ngIf="jobs.length != 0 || Featurejobs.length!=0;else logoutJobs">
   <!--Start Feature Jobs Tab -->
-  <h2 class="Job-heading" *ngIf="Featurejobs !=null">Premium Jobs</h2>
+  <h2 class="Job-heading" *ngIf="Featurejobs.length!=0">Premium Jobs</h2>
+  <h2 class="Job-heading" *ngIf="Featurejobs.length==0">No Feature Jobs Found</h2>
     <div *ngFor="let job of Featurejobs" >
 
         <div class="featureCards row">
@@ -43,13 +39,130 @@
         </div>
     </div>
 
+<!--End Feature  Jobs Tab -->
+ <!-- Fetch All Jobs Data without feature tag-->
+ <h2 class="Job-heading">Regular Jobs</h2>
+ <div *ngFor="let job of jobs"  >
 
+  <div *ngFor="let item of job.allJobsClasses">
+
+    <div class="JobCards row">
+
+      <div class="col-md-5">
+        <h4 class="jobTitle">{{ job.title }}</h4>
+        <p class="companyName">Scriptbundle</p>
+        <div class="JobLocation">
+          <button mat-mini-fab color="primary">
+            <mat-icon>location_on</mat-icon>
+          </button>
+        <span class="JobLocationText"> {{ getLocationTitle(job.location)}}</span>
+        </div>
+
+        <h4>Job Class</h4>
+        <div class="jobClass">
+
+
+          <div *ngFor="let classOfJob of job.allJobsClasses">
+            <span *ngIf="classOfJob.jobClass.name === jobClasses.Urgent" class="JobClassUrgent">Urgent</span>
+            <span *ngIf="classOfJob.jobClass.name === jobClasses.Private" class="JobClassPrivate">Private</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 jobTypes">
+        <h4> <strong>Job Type: </strong> {{ getJobTypeTitle(job.type)}}</h4>
+        <h4> <strong>Posted : </strong> {{job.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</h4>
+        <h4> <strong>Deadline : </strong> {{job.deadLine | date:'EEEE, MMMM dd, yyyy'}}</h4>
+      </div>
+      <div class="col-md-2">
+        <button color="primary"  [routerLink]="['/job/view-job/', job.id]"  mat-raised-button class="btnglobal">
+          View Detail
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="JobCards row" *ngIf="job.allJobsClasses.length == 0">
+
+    <div class="col-md-5">
+      <h4 class="jobTitle">{{ job.title }}</h4>
+      <p class="companyName">Scriptbundle</p>
+      <div class="JobLocation">
+        <button mat-mini-fab color="primary">
+          <mat-icon>location_on</mat-icon>
+        </button>
+      <span class="JobLocationText"> {{ getLocationTitle(job.location)}}</span>
+      </div>
+    </div>
+    <div class="col-md-5 jobTypes">
+      <h4> <strong>Job Type: </strong> {{ getJobTypeTitle(job.type)}}</h4>
+      <h4> <strong>Posted : </strong> {{job.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</h4>
+      <h4> <strong>Deadline : </strong> {{job.deadLine | date:'EEEE, MMMM dd, yyyy'}}</h4>
+    </div>
+    <div class="col-md-2">
+      <button color="primary"  [routerLink]="['/job/view-job/', job.id]"  mat-raised-button class="btnglobal">
+        Apply Now
+      </button>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- End Fetch All Jobs Data -->
+
+</div>
+
+
+<ng-template #logoutJobs>
+  <!--Start Feature Jobs Tab -->
+
+  <div *ngIf="FeatureJobsForNormalUserData && jobsForNormalUserData ; else loadingBar">
+    <h2 class="Job-heading" *ngIf="FeatureJobsForNormalUserData !=null && jobsForNormalUserData !=null">Premium Jobs</h2>
+    <div *ngFor="let job of FeatureJobsForNormalUserData" >
+
+        <div class="featureCards row">
+          <div class="col-md-5">
+            <h4 class="jobTitle">{{ job.title }}</h4>
+            <p class="companyName">Scriptbundle</p>
+            <div class="JobLocation">
+              <button mat-mini-fab color="primary">
+                <mat-icon>location_on</mat-icon>
+              </button>
+            <span class="JobLocationText"> {{ getLocationTitle(job.location)}}</span>
+            </div>
+
+            <h4>Job Class</h4>
+            <div class="jobClass">
+
+
+              <div *ngFor="let classOfJob of job.allJobsClasses">
+                <span *ngIf="classOfJob.jobClass.name === jobClasses.Feature" class="JobClassFeature">Feature</span>
+                <span *ngIf="classOfJob.jobClass.name === jobClasses.Urgent" class="JobClassUrgent">Urgent</span>
+                <span *ngIf="classOfJob.jobClass.name === jobClasses.Private" class="JobClassPrivate">Private</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 jobTypes">
+            <h4> <strong>Job Type: </strong> {{ getJobTypeTitle(job.type)}}</h4>
+            <h4> <strong>Posted : </strong> {{job.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</h4>
+            <h4> <strong>Deadline : </strong> {{job.deadLine | date:'EEEE, MMMM dd, yyyy'}}</h4>
+          </div>
+          <div class="col-md-2">
+            <button color="primary" [routerLink]="['/job/view-job/', job.id]"  mat-raised-button class="btnglobal">
+              View Detail
+            </button>
+          </div>
+        </div>
+    </div>
+
+  </div>
 
   <!--End Feature  Jobs Tab -->
 
   <!-- Fetch All Jobs Data -->
 
-    <div *ngFor="let job of jobs"  >
+    <div *ngFor="let job of FeatureJobsForNormalUserData"  >
+
 
       <div class="JobCards row" *ngIf="job.allJobsClasses.length == 0">
 
@@ -75,56 +188,53 @@
         </div>
       </div>
 
-      <div *ngFor="let item of job.allJobsClasses">
-
-       <h2 class="Job-heading">Regular Jobs</h2>
-
-
-        <div class="JobCards row">
-
-          <div class="col-md-5">
-            <h4 class="jobTitle">{{ job.title }}</h4>
-            <p class="companyName">Scriptbundle</p>
-            <div class="JobLocation">
-              <button mat-mini-fab color="primary">
-                <mat-icon>location_on</mat-icon>
-              </button>
-            <span class="JobLocationText"> {{ getLocationTitle(job.location)}}</span>
-            </div>
-
-            <h4>Job Class</h4>
-            <div class="jobClass">
-
-
-              <div *ngFor="let classOfJob of job.allJobsClasses">
-                <span *ngIf="classOfJob.jobClass.name === jobClasses.Urgent" class="JobClassUrgent">Urgent</span>
-                <span *ngIf="classOfJob.jobClass.name === jobClasses.Private" class="JobClassPrivate">Private</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-5 jobTypes">
-            <h4> <strong>Job Type: </strong> {{ getJobTypeTitle(job.type)}}</h4>
-            <h4> <strong>Posted : </strong> {{job.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</h4>
-            <h4> <strong>Deadline : </strong> {{job.deadLine | date:'EEEE, MMMM dd, yyyy'}}</h4>
-          </div>
-          <div class="col-md-2">
-            <button color="primary"  [routerLink]="['/job/view-job/', job.id]"  mat-raised-button class="btnglobal">
-              View Detail
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
+    <h2 class="Job-heading" *ngIf="FeatureJobsForNormalUserData !=null && jobsForNormalUserData !=null">Regular Jobs</h2>
+    <div *ngFor="let job of  jobsForNormalUserData">
 
 
+
+
+       <div class="JobCards row">
+
+         <div class="col-md-5">
+           <h4 class="jobTitle">{{ job.title }}</h4>
+           <p class="companyName">Scriptbundle</p>
+           <div class="JobLocation">
+             <button mat-mini-fab color="primary">
+               <mat-icon>location_on</mat-icon>
+             </button>
+           <span class="JobLocationText"> {{ getLocationTitle(job.location)}}</span>
+           </div>
+
+           <h4>Job Class</h4>
+           <div class="jobClass">
+
+
+             <div *ngFor="let classOfJob of job.allJobsClasses">
+               <span *ngIf="classOfJob.jobClass.name === jobClasses.Urgent" class="JobClassUrgent">Urgent</span>
+               <span *ngIf="classOfJob.jobClass.name === jobClasses.Private" class="JobClassPrivate">Private</span>
+             </div>
+           </div>
+         </div>
+         <div class="col-md-5 jobTypes">
+           <h4> <strong>Job Type: </strong> {{ getJobTypeTitle(job.type)}}</h4>
+           <h4> <strong>Posted : </strong> {{job.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</h4>
+           <h4> <strong>Deadline : </strong> {{job.deadLine | date:'EEEE, MMMM dd, yyyy'}}</h4>
+         </div>
+         <div class="col-md-2">
+           <button color="primary"  [routerLink]="['/job/view-job/', job.id]"  mat-raised-button class="btnglobal">
+             View Detail
+           </button>
+         </div>
+       </div>
+     </div>
 
   <!-- End Fetch All Jobs Data -->
 </ng-template>
 
-
-<ng-template #elseBlock>
+<ng-template #loadingBar>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </ng-template>
-
 
 

@@ -1,22 +1,27 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IJobType, ILocation } from 'src/app/Interface/IDataTypes';
-import { EmployerServiceService } from 'src/app/appServices/employer/employer-service.service';
+import { IJobClasses, IJobType, ILocation } from 'src/app/Interface/IDataTypes';
+import { AppliedJobsService } from 'src/app/appServices/appliedJobs/applied-jobs.service';
+import { CandidateService } from 'src/app/appServices/candidate/candidate.service';
 import { SecurityService } from 'src/app/appServices/security/security.service';
 
 @Component({
-  selector: 'app-company-dashboard',
-  templateUrl: './company-dashboard.component.html',
-  styleUrls: ['./company-dashboard.component.css']
+  selector: 'app-applied-jobs',
+  templateUrl: './applied-jobs.component.html',
+  styleUrls: ['./applied-jobs.component.css']
 })
-export class CompanyDashboardComponent {
-  employerId:number = 0;
-  employerById:any;
-  constructor( private routing:Router,private employerService:EmployerServiceService,securityServicse:SecurityService) {
-    this.employerId = Number(securityServicse.getCurrentemployerId());
-   employerService.fetchEmployer(this.employerId).subscribe((data) => this.employerById =data);
+export class AppliedJobsComponent {
+  appliedJobs:any;
+  candidateId:any;
+  jobClasses= IJobClasses;
+
+  constructor( private routing:Router,private securityService:SecurityService,private appliedJobService:AppliedJobsService) {
+
+    this.candidateId = this.securityService.getCurrentCandidateId();
+    appliedJobService.getCrntCandidateAppliedJobs(this.candidateId).subscribe((data)=>this.appliedJobs = data);
   }
-  getLocationTitle(value: any): string {
+
+  getLocationTitle(value: ILocation): string {
     switch (value) {
       case ILocation.Lahore:
         return 'Lahore';
@@ -40,7 +45,7 @@ export class CompanyDashboardComponent {
         return 'Not Defined';
     }
   }
-  getJobTypeTitle(value: any): string {
+  getJobTypeTitle(value: IJobType): string {
     switch (value) {
       case IJobType.FullTime:
         return 'Full Time';

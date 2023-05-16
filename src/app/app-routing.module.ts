@@ -8,14 +8,16 @@ import { IsAdminGuard } from './guard/is-admin.guard';
 import { LoginComponent } from './pages/userAuth/login/login.component';
 import { RegisterComponent } from './pages/userAuth/register/register.component';
 import { EmployersComponent } from './pages/employer/employers/employers.component';
-import { DashboardComponent } from './pages/dashboardCompany/dashboard/dashboard.component';
 import { EmployerDetailComponent } from './pages/employer/employer-detail/employer-detail.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CandidateRegisterComponent } from './pages/userAuth/candidate-register/candidate-register.component';
 import { EmployerRegisterComponent } from './pages/userAuth/employer-register/employer-register.component';
-import { JobClassesComponent } from './pages/dashboardCompany/company-dashboard/job-classes/job-classes.component';
+import { JobClassesComponent } from './pages/dashboards/company-dashboard/job-classes/job-classes.component';
 import { CandidateComponent } from './pages/candidate/candidate/candidate.component';
 import { CandidateDetailComponent } from './pages/candidate/candidate-detail/candidate-detail.component';
+import { CandidateDashboardComponent } from './pages/dashboards/candidate-dashboard/candidate-dashboard.component';
+import { CompanyDashboardComponent } from './pages/dashboards/company-dashboard/company-dashboard.component';
+import { EditJobComponent } from './pages/dashboards/company-dashboard/edit-job/edit-job.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,12 +29,14 @@ const routes: Routes = [
   { path:'register', component:RegisterComponent },
   { path:'employers', component:EmployersComponent },
   { path:'employers/employer-detail/:id', component:EmployerDetailComponent },
-  { path:'dashboard', component:DashboardComponent},
+  { path:'candidateDashboard', component:CandidateDashboardComponent},
+  { path:'companyDashboard', component:CompanyDashboardComponent},
   { path:'register/candidateregister', component:CandidateRegisterComponent },
   { path:'register/employerRegister', component:EmployerRegisterComponent },
   { path:'home', component:HomeComponent },
   { path:'candidate', component:CandidateComponent },
   { path:'candidate/candidate-detail/:id', component:CandidateDetailComponent },
+  { path:'eidtJob/:id', component:EditJobComponent },
   { path:'**', component:PageNotFoundComponent },
 ];
 

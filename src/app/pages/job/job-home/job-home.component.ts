@@ -1,9 +1,7 @@
 import { Component,Input } from '@angular/core';
 import { IJob, IJobStatus, IJobType } from 'src/app/Interface/IDataTypes';
 import { JobDataService } from 'src/app/appServices/job/job-data.service';
-import {NgForm} from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
 import { SecurityService } from 'src/app/appServices/security/security.service';
 
 
@@ -16,25 +14,22 @@ import { SecurityService } from 'src/app/appServices/security/security.service';
 export class JobHomeComponent {
   AllJobdata:IJob[] = [];
   FeatureJobdata:IJob[] = [];
-
-
+  jobsForNormalUser:any;
+  FeatureJobsForNormalUser:any;
   dataFromHtp:any;
 
 
 
-  @Input()
-   role:string = '';
-
-
   constructor(private fetchJob:JobDataService,
-    private formBuilder:FormBuilder,
-    private fetDemo:JobDataService,
-    private router: Router,
-    private Security:SecurityService,
-    private authenticate:SecurityService) {
+    private formBuilder:FormBuilder, private SecurityService:SecurityService) {
 
-    fetchJob.fetchJobs().subscribe((data)=> this.AllJobdata =data );
-    fetchJob.fetchFeatureJobs().subscribe((data)=> this.FeatureJobdata =data );
+    fetchJob.fetchJobsByUserId().subscribe((data)=> this.AllJobdata =data );
+    fetchJob.fetchFeatureJobsUserById().subscribe((data)=> this.FeatureJobdata =data );
+
+
+    fetchJob.fetchJobs().subscribe((data)=> this.jobsForNormalUser =data );
+    fetchJob.fetchFeatureJobs().subscribe((data)=> this.FeatureJobsForNormalUser =data );
+
 
   }
 

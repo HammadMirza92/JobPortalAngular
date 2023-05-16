@@ -1,8 +1,12 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IAppliedJobs } from 'src/app/Interface/IAppliedJobs';
 import { IJob,IJobExperience,IJobShift,IJobType,ILocation, IQualification, ISalaryType } from 'src/app/Interface/IDataTypes';
 import { AppliedJobsService } from 'src/app/appServices/appliedJobs/applied-jobs.service';
 import { JobDataService } from 'src/app/appServices/job/job-data.service';
+import { SecurityService } from 'src/app/appServices/security/security.service';
 
 @Component({
   selector: 'app-view-job',
@@ -11,26 +15,33 @@ import { JobDataService } from 'src/app/appServices/job/job-data.service';
 })
 export class ViewJobComponent {
 
-  jobId:number = 0;
+  jobId:string = "";
   JobLocation =Location;
   AllJobdata:IJob[] = [];
-
-
+  candidateId:string=" ";
+  appliedJobs:any;
   JobById:any;
 
-  constructor(private router:ActivatedRoute , private routing:Router,private fetchjobdata:JobDataService,private appliedJobService:AppliedJobsService) {
+
+  constructor(private router:ActivatedRoute ,
+    private routing:Router,
+    private fetchjobdata:JobDataService,private appliedJobService:AppliedJobsService,private securityService:SecurityService) {
     this.jobId = this.router.snapshot.params['id'];
     fetchjobdata.fetJobById(this.jobId).subscribe((data) => this.JobById =data);
-    fetchjobdata.fetchJobs().subscribe((data)=> this.AllJobdata =data );
+    var candidateId =  securityService.getCurrentCandidateId();
+
+    appliedJobService.getCrntCandidateAppliedJobs(this.candidateId).subscribe((data)=>this.appliedJobs = data);
+
    }
-   applyNow(jobId:number){
-    this.appliedJobService.applyForJob(jobId);
-    this.routing.navigate(['job']);
+   applyNow(jobId:string,employerId:string){
+    this.appliedJobService.applyForJob(jobId,employerId);
+
    }
 
   onBack(){
     this.routing.navigate(['home']);
   }
+
 
 
   getjobTypeTitle(value: number): string {
@@ -173,7 +184,5 @@ export class ViewJobComponent {
         return 'Not Defined';
     }
   }
-
-
 
 }

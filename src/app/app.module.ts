@@ -24,21 +24,24 @@ import { LoginComponent } from './pages/userAuth/login/login.component';
 import { RegisterComponent } from './pages/userAuth/register/register.component';
 import { EmployersComponent } from './pages/employer/employers/employers.component';
 import { EmployerSearchComponent } from './pages/employer/employer-search/employer-search.component';
-import { DashboardComponent } from './pages/dashboardCompany/dashboard/dashboard.component';
-import { CompanyDashboardComponent } from './pages/dashboardCompany/company-dashboard/company-dashboard.component';
+import { CompanyDashboardComponent } from './pages/dashboards/company-dashboard/company-dashboard.component';
 import { EmployerDetailComponent } from './pages/employer/employer-detail/employer-detail.component';
 import { HomeComponent } from './pages/home/home.component';
 import { EmployerRegisterComponent } from './pages/userAuth/employer-register/employer-register.component';
 import { CandidateRegisterComponent } from './pages/userAuth/candidate-register/candidate-register.component';
 
 import * as lottie from 'lottie-web';
-import { JobPostComponent } from './pages/dashboardCompany/company-dashboard/job-post/job-post.component';
-import { CandidateDashboardComponent } from './pages/dashboardCompany/candidate-dashboard/candidate-dashboard.component';
-import { JobClassesComponent } from './pages/dashboardCompany/company-dashboard/job-classes/job-classes.component';
+import { JobPostComponent } from './pages/dashboards/company-dashboard/job-post/job-post.component';
+import { CandidateDashboardComponent } from './pages/dashboards/candidate-dashboard/candidate-dashboard.component';
+import { JobClassesComponent } from './pages/dashboards/company-dashboard/job-classes/job-classes.component';
 import { CandidateComponent } from './pages/candidate/candidate/candidate.component';
 import { CandidateDetailComponent } from './pages/candidate/candidate-detail/candidate-detail.component';
 import { CandidateListComponent } from './pages/candidate/candidate-list/candidate-list.component';
 import { EmployerListComponent } from './pages/employer/employer-list/employer-list.component';
+import { CompanyDashboardIndexComponent } from './pages/dashboards/company-dashboard/company-dashboard-index/company-dashboard-index.component';
+import { CandidateDashboardIndexComponent } from './pages/dashboards/candidate-dashboard/candidate-dashboard-index/candidate-dashboard-index.component';
+import { AppliedJobsComponent } from './pages/dashboards/candidate-dashboard/applied-jobs/applied-jobs.component';
+import { EditJobComponent } from './pages/dashboards/company-dashboard/edit-job/edit-job.component';
 
 
 @NgModule({
@@ -55,7 +58,6 @@ import { EmployerListComponent } from './pages/employer/employer-list/employer-l
     RegisterComponent,
     EmployersComponent,
     EmployerSearchComponent,
-    DashboardComponent,
     CompanyDashboardComponent,
     EmployerDetailComponent,
     HomeComponent,
@@ -68,6 +70,11 @@ import { EmployerListComponent } from './pages/employer/employer-list/employer-l
     CandidateDetailComponent,
     CandidateListComponent,
     EmployerListComponent,
+    CompanyDashboardIndexComponent,
+    CandidateDashboardComponent,
+    CandidateDashboardIndexComponent,
+    AppliedJobsComponent,
+    EditJobComponent
 
   ],
   imports: [

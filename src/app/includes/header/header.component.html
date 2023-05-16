@@ -55,33 +55,45 @@
           </li>
         </ng-container>
 
-          <ng-container *ngIf="!isAuth;else samplecontent">
-            <li class="nav-item">
-              <a
-                [routerLinkActiveOptions]="{ exact: true }"
-                routerLinkActive="active"
-                routerLink="login"
-                >Login</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                [routerLinkActiveOptions]="{ exact: true }"
-                routerLinkActive="active"
-                routerLink="register"
-                >Register</a
-              >
-            </li>
-          </ng-container>
-          <ng-template #samplecontent>
 
-            <ng-container>
-              <li class="nav-item">
-                <a mat-icon-button [matMenuTriggerFor]="menu"> <mat-icon>account_circle</mat-icon></a>
-              </li>
 
-            </ng-container>
-          </ng-template>
+          <li class="nav-item" *ngIf="isAuth && isCompany">
+            <a mat-icon-button [matMenuTriggerFor]="Companymenu"> <mat-icon>account_circle</mat-icon></a>
+          </li>
+
+          <li class="nav-item" *ngIf="isAuth && isCandidate">
+            <a mat-icon-button [matMenuTriggerFor]="Candidatemenu"> <mat-icon>account_circle</mat-icon></a>
+          </li>
+
+
+        <ng-container *ngIf="!isAuth">
+          <li class="nav-item">
+            <a
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLinkActive="active"
+              routerLink="login"
+              >Login</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLinkActive="active"
+              routerLink="register"
+              >Register</a
+            >
+          </li>
+        </ng-container>
+
+
+        <!-- <li class="nav-item">
+          <a
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLinkActive="active"
+            routerLink="candidate"
+            >{{"auth"+isAuth +": iscompany "+isCompany+": iscandiate "+isCandidate}}</a
+          >
+        </li> -->
 
         </ul>
 
@@ -90,16 +102,28 @@
 </nav>
 
 
-<mat-menu #menu="matMenu">
-  <button mat-menu-item  routerLink="dashboard" class="dropdown-link">
+<mat-menu #Companymenu="matMenu">
+  <button mat-menu-item  routerLink="companyDashboard" class="dropdown-link">
     <mat-icon>list_alt</mat-icon>
-    <span> <a>Dashboard</a></span>
+    <span> <a>Dashboard Company</a></span>
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item (click)="logout()">
     <mat-icon>exit_to_app</mat-icon>
-    <span><a (click)="SecurityService.logout()">Logout</a></span>
+    <span><a >Logout</a></span>
+  </button>
+</mat-menu>
+
+<mat-menu #Candidatemenu="matMenu">
+  <button mat-menu-item  routerLink="candidateDashboard" class="dropdown-link">
+    <mat-icon>list_alt</mat-icon>
+    <span> <a>Dashboard candidate</a></span>
+  </button>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    <span><a >Logout</a></span>
   </button>
 </mat-menu>
 <!-- {{"user auth is "+ userAuthenticate}} -->
+
 
 

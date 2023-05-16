@@ -18,7 +18,8 @@ export class CandidateService {
     // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<ICandidate[]>(this.basURL+ "/api/candidate" );
   }
-  fetchCandidateById(id:number) {
+  fetchCandidateById(id:string) {
+    debugger;
   //   const token = this.SecurityServices.getToken();
   //  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get(this.basURL+ "/api/candidate/"+id);

@@ -13,7 +13,7 @@ import { EmployerServiceService } from 'src/app/appServices/employer/employer-se
 })
 export class CandidateDetailComponent {
 
-  candidateId:number = 0;
+  candidateId:string = "";
   candidateById:any;
   appliedJobs:any;
   jobClasses= IJobClasses;

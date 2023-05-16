@@ -39,7 +39,7 @@
             <input formControlName="aboutMe" matInput />
           </mat-form-field>
           <mat-form-field appearance="outline" >
-            <mat-label>Experience</mat-label>
+            <mat-label>Experience in Field</mat-label>
             <input formControlName="experience" matInput />
           </mat-form-field>
           <mat-form-field appearance="outline" >
@@ -57,7 +57,7 @@
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="outline" >
-            <mat-label>Experience Time</mat-label>
+            <mat-label>Experience Time / Years</mat-label>
             <input formControlName="experienceTime" matInput type="number"/>
           </mat-form-field>
           <mat-form-field appearance="outline" >
@@ -75,7 +75,7 @@
             </mat-select>
           </mat-form-field>
           <div>
-              <button mat-flat-button  matStepperNext color="primary" [disabled]="candidateDataRegister.invalid">Next</button>
+              <button class="btn-submit" mat-flat-button  matStepperNext color="primary" [disabled]="candidateDataRegister.invalid">Next</button>
           </div>
         </form>
 

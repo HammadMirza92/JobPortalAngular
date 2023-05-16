@@ -17,8 +17,8 @@
       <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <button class="nav-link active" id="v-pills-dashboard-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dashboard" type="button" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"> <mat-icon>dashboard</mat-icon><span>Dashboard</span></button>
         <button class="nav-link " id="v-pills-jobPost-tab" data-bs-toggle="pill" data-bs-target="#v-pills-jobPost" type="button" role="tab" aria-controls="v-pills-jobPost" aria-selected="false"> <mat-icon>dashboard</mat-icon><span>Post Job</span></button>
-        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><mat-icon>edit</mat-icon>Profile Edit</button>
-        <button class="nav-link" id="v-pills-dashboard-tab" data-bs-toggle="pill" data-bs-target="#v-pills-logout" type="button" role="tab" aria-controls="v-pills-logout" aria-selected="false"><mat-icon>exit_to_app</mat-icon>log Out</button>
+        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><mat-icon>edit</mat-icon>Add Job Tags</button>
+        <button class="nav-link" id="v-pills-dashboard-tab" data-bs-toggle="pill" data-bs-target="#v-pills-logout" type="button" role="tab" aria-controls="v-pills-logout" aria-selected="false" (click)="logout()"><mat-icon>exit_to_app</mat-icon>log Out</button>
       </div>
     </div>
    </div>
@@ -26,10 +26,9 @@
 
   <div class="col-md-7">
     <div class="tab-content" id="v-pills-tabContent" style="background-color: white;">
-      <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab"><app-company-dashboard></app-company-dashboard></div>
+      <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab"><app-company-dashboard-index></app-company-dashboard-index></div>
       <div class="tab-pane fade show" id="v-pills-jobPost" role="tabpanel" aria-labelledby="v-pills-jobPost-tab"><app-job-post></app-job-post></div>
       <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><app-job-classes></app-job-classes></div>
-      <div class="tab-pane fade" id="v-pills-logout" role="tabpanel" aria-labelledby="v-pills-logout-tab">asdasdasdasdasda00000</div>
     </div>
   </div>
 
@@ -38,7 +37,7 @@
       <img src="{{employerById.companyLogo}}" class="profile-logo-right"/>
         <div style="display: flex;flex-direction: column; align-items: center;">
           <h4 class="company-howdy">Howdy !</h4>
-          <h4 class="company-email">{{email}}</h4>
+          <h4 class="company-email">{{employerById.companyName}}</h4>
         </div>
     </div>
   </div>

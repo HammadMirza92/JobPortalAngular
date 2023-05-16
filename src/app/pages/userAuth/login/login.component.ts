@@ -30,12 +30,13 @@ export class LoginComponent {
     this.error= '';
     this.securityServices.login(userCredentials).subscribe((authenticationResponse)=>{
       this.securityServices.saveToken(authenticationResponse);
-      console.log("response is ",authenticationResponse);
       if(authenticationResponse.employerId!=null){
         this.securityServices.setCurrentemployerId(authenticationResponse.employerId);
+        this.securityServices.setCurrentuserRole(authenticationResponse.role);
       }
       if(authenticationResponse.candidateId!=null){
         this.securityServices.setCurrentCandidateId(authenticationResponse.candidateId);
+        this.securityServices.setCurrentuserRole(authenticationResponse.role);
       }
       this.openSnackBar();
       this.router.navigate(['/job']);
@@ -49,11 +50,11 @@ export class LoginComponent {
       this._snackBar.open("Server Error Please try in a while", 'Close', { duration: 3000 })
     }
   }
-
-  openSnackBar() {
-    this._snackBar.open('Yahoo! You are now LogIn', 'Dismiss', {
+  openSnackBar(){
+    this._snackBar.open('Yahoo! You are now LogIn' , 'Dismiss', {
       horizontalPosition: end,
       duration: 1500,
     });
   }
+
 }

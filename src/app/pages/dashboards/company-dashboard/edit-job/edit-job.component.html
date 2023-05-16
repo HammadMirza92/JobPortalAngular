@@ -1,0 +1,16 @@
+
+<div class="form-container">
+
+  <form (ngSubmit)="onSubmits()">
+    <mat-form-field appearance="outline">
+      <mat-label>title</mat-label>
+      <input matInput [(ngModel)]="editableValue" name="title">
+    </mat-form-field>
+
+    <!-- Add submit button or other form actions -->
+    <button mat-button type="submit">Submit</button>
+  </form>
+
+
+</div>
+

@@ -1,24 +1,27 @@
-import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { IJobType, ILocation } from 'src/app/Interface/IDataTypes';
-import { IEmployer } from 'src/app/Interface/IEmployer';
-import { EmployerServiceService } from 'src/app/appServices/employer/employer-service.service';
+import { CandidateService } from 'src/app/appServices/candidate/candidate.service';
+import { JobDataService } from 'src/app/appServices/job/job-data.service';
+import { SecurityService } from 'src/app/appServices/security/security.service';
 
 @Component({
-  selector: 'app-employer-detail',
-  templateUrl: './employer-detail.component.html',
-  styleUrls: ['./employer-detail.component.css']
+  selector: 'app-candidate-dashboard-index',
+  templateUrl: './candidate-dashboard-index.component.html',
+  styleUrls: ['./candidate-dashboard-index.component.css']
 })
-export class EmployerDetailComponent {
+export class CandidateDashboardIndexComponent {
+  candidateId:any;
+  candidateById:any;
+  jobs:any;
+  featureJobs:any;
 
-  employerId:any;
-  employerById:any;
-  currentDate:any;
+  constructor(private Security:SecurityService,private candidateService:CandidateService,private fetchJob:JobDataService) {
 
-  constructor(private router:ActivatedRoute , private routing:Router,private employerService:EmployerServiceService) {
-    this.employerId = this.router.snapshot.params['id'];
-   employerService.fetchEmployer(this.employerId).subscribe((data) => this.employerById =data);
+    this.candidateId = this.Security.getCurrentCandidateId();
+    candidateService.fetchCandidateById(this.candidateId).subscribe((data) => this.candidateById =data);
+
+    fetchJob.fetchJobs().subscribe((data)=> this.jobs =data );
+    fetchJob.fetchFeatureJobs().subscribe((data)=> this.featureJobs =data );
   }
 
   getLocationTitle(value: any): string {
@@ -45,6 +48,7 @@ export class EmployerDetailComponent {
         return 'Not Defined';
     }
   }
+
   getJobTypeTitle(value: any): string {
     switch (value) {
       case IJobType.FullTime:

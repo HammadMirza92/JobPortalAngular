@@ -3,7 +3,7 @@ import { ICandidate, ISkills } from "./ICandidate";
 import { IEmployer } from "./IEmployer";
 
 export interface IJob {
-  id:number,
+  id:string,
   icon:string,
   title:string,
   description:string,
@@ -21,26 +21,26 @@ export interface IJob {
   jobPosted:Date,
   vacancy:number,
   employer:IEmployer
-  employerId:number
+  employerId:string
   allJobsClasses: IAllJobClasses[];
   jobSkills:IJobSkills,
   appliedJobs?:IAppliedJobs[]
 }
 export interface IJobSkills{
-  id:number,
-  jobId:number,
+  id:string,
+  jobId:string,
   job:IJob,
-  skillId:number,
+  skillId:string,
   skill:ISkills
 }
 export interface IAllJobClasses {
-  jobId: number;
+  jobId: string;
   job?:IJob;
-  jobClassId: number;
+  jobClassId: string;
   jobClass: JobClass;
 }
 export interface JobClass {
-  id: number;
+  id: string;
   name: IJobClasses;
   allJobsClasses: IAllJobClasses;
 }
@@ -53,9 +53,9 @@ export interface IAuthenticationResponse{
   token:string,
   user:any,
   role:string,
-  employerId?:number,
+  employerId?:string,
   employer?:IEmployer,
-  candidateId?:number,
+  candidateId?:string,
   candidate?:ICandidate
   expiration:Date,
 }
