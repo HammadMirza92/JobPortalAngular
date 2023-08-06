@@ -57,7 +57,7 @@ export class JobClassesComponent {
 
   jobClassesOptions =
   [ { value: "Feature",key : IJobClasses.Feature },
-    { value: "Private",key : IJobClasses.Private },
+    { value: "Remote",key : IJobClasses.Remote },
     { value: "Urgent",key : IJobClasses.Urgent } ,
 
   ];

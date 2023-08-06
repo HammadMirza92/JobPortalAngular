@@ -1,3 +1,4 @@
+
 .company {
   margin-bottom: 30px;
 }
@@ -109,4 +110,29 @@ a {
 }
 .company .company-bottom .social-links li img {
   width: 30px;
+}
+
+
+
+.noData-found-container{
+  width: 800px;
+  height: 600px;
+}
+.noData-found-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.noData-found-heading{
+  font-family: 'popins', sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+@media (max-width: 980px) {
+  .noData-found-container{
+    width: 400px;
+    height: 300px;
+  }
 }

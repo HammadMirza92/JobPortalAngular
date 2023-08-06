@@ -1,0 +1,50 @@
+.main-container{
+  background-color: #FFF;
+  box-shadow: 1px 0px 20px rgba(197, 197, 197, 0.3);
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 3%;
+  font-family: 'popins', sans-serif;
+}
+.published-jobs-container{
+  background-color: #32ac79;
+  padding: 20px;
+  border-radius: 5px;
+  font-family: 'popins', sans-serif;
+}
+.jobs-application-container{
+  background-color: #673ab7;
+  padding: 20px;
+  border-radius: 5px;
+}
+.pb-jobs-img{
+  width: 60px;
+  height: 60px;
+}
+.pb-job-title{
+  color: white;
+}
+.pb-job-count{
+  color: white;
+}
+.pb-job-link{
+  color: white;
+  text-decoration: none;
+}
+.pb-job-link:hover{
+  cursor: pointer;
+}
+.job-overview-container{
+  padding: 20px 10px;
+}
+.job-overview-title{
+  font-family: 'popins', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+}
+.table{
+  font-family: 'popins', sans-serif;
+}
+.viewJob-btn{
+  font-family: 'popins', sans-serif;
+}

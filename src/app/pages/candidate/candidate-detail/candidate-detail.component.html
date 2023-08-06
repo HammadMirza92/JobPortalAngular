@@ -2,7 +2,7 @@
   <div class="InnerData container">
 
 
-      <img src="{{candidateById.profileImg}}" class="candidate-logo"/>
+      <img src="../../../../assets/Images/candidateImgs/{{candidateById.profileImg}}" class="candidate-logo"/>
       <div>
 
 
@@ -37,6 +37,15 @@
       <div class="sidebar-container">
         <h1>  Employer Detail </h1>
         <hr>
+        <div class="sidebar-content">
+          <button mat-mini-fab color="accent">
+            <mat-icon>mail</mat-icon>
+          </button>
+          <div class="innercontent-container">
+            <h2>Personal Email</h2>
+            <p>{{candidateById.email}}</p>
+          </div>
+        </div>
         <div class="sidebar-content">
           <button mat-mini-fab color="primary">
             <mat-icon>local_phone</mat-icon>
@@ -82,9 +91,61 @@
         <p>{{candidateById.aboutMe}}</p>
       </div>
 
+        <div *ngIf="appliedJobs && isAuth && isAdmin; else noJob">
+
+        <h1 class="Job-heading">Applied Jobs</h1>
+          <div *ngFor="let item of appliedJobs">
+
+                <div class="JobCards row">
+
+                  <div class="col-md-5">
+                    <h4 class="jobTitle">{{ item.job.title }}</h4>
+                    <!-- <p class="companyName">{{ item.companyName }}</p> -->
+                    <div class="JobLocation">
+                      <button mat-mini-fab color="primary">
+                        <mat-icon>location_on</mat-icon>
+                      </button>
+                    <span class="JobLocationText"> {{ getLocationTitle(item.job.location)}}</span>
+                      </div>
+
+                    <h4>Job Class</h4>
+                    <div class="jobClass">
+
+
+                      <div *ngFor="let classOfJob of item.job.allJobsClasses">
+
+                        <span *ngIf="classOfJob.jobClass.name === jobClasses.Feature" class="JobClassUrgent">Feature</span>
+                      <span *ngIf="classOfJob.jobClass.name === jobClasses.Urgent" class="JobClassUrgent">Urgent</span>
+                      <span *ngIf="classOfJob.jobClass.name === jobClasses.Remote" class="JobClassPrivate">Remote</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-5 jobTypes">
+                    <h4> <strong>Job Type: </strong> {{ getJobTypeTitle(item.job.type)}}</h4>
+                    <h4> <strong>Posted : </strong> {{item.job.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</h4>
+                    <h4> <strong>Deadline : </strong> {{item.job.deadLine | date:'EEEE, MMMM dd, yyyy'}}</h4>
+                  </div>
+                  <div class="col-md-2">
+
+                      <button color="primary"  [routerLink]="['/job/view-job/',item.job.id]"  mat-raised-button class="btnglobal">
+                        View Detail
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+        </div>
+    </div>
+
+
 
     <div>
-
+      <ng-template #noJob>
+        <div class="noJob-container" *ngIf="isAuth && isAdmin">
+          <iframe src="https://embed.lottiefiles.com/animation/109013"></iframe>
+          <h2>No Applied Job Found</h2>
+        </div>
+      </ng-template>
 
    </div>
   </div>

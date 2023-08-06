@@ -2,19 +2,21 @@
 <div class="main-container">
   <h1>Register as Candidate</h1>
 
-  <mat-stepper headerPosition="top" #stepper>
-    <mat-step [stepControl]="firstCandidateFormGroup">
-      <ng-template matStepLabel>Enter Email and Password</ng-template>
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="candidateUserRegister" editable=false >
       <div class="inner-container">
-      <form (submit)="userRegister(candidateUserRegister.value)" [formGroup]="candidateUserRegister" >
+        <form (submit)="userRegister(candidateUserRegister.value)" [formGroup]="candidateUserRegister" >
+      <ng-template matStepLabel>Enter Email and Password</ng-template>
+
         <mat-form-field appearance="outline" >
             <mat-label>Email</mat-label>
             <input formControlName="email" matInput />
-
+            <mat-error *ngIf="candidateUserRegister.invalid">Valid Email is required</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" >
           <mat-label>Passowrd</mat-label>
           <input formControlName="password" matInput type="password"/>
+          <mat-error *ngIf="candidateUserRegister.invalid"> Password is required</mat-error>
       </mat-form-field>
         <div>
             <button matStepperNext mat-flat-button color="primary" [disabled]="candidateUserRegister.invalid">Next</button>
@@ -22,18 +24,23 @@
       </form>
     </div>
     </mat-step>
-    <mat-step [stepControl]="secondCandidateFormGroup">
-      <ng-template matStepLabel>Enter Your Details</ng-template>
+    <mat-step [stepControl]="candidateDataRegister" editable=false>
       <div class="inner-container">
         <form (submit)="candidateRegister(candidateDataRegister.value)" [formGroup]="candidateDataRegister" >
+      <ng-template matStepLabel>Enter Your Details</ng-template>
+
+          <span class="mat-input-file">
+            <input type="file" (change)="onFileSelected($event)">
+          </span>
           <mat-form-field appearance="outline" >
               <mat-label>Your Name</mat-label>
               <input formControlName="name" matInput />
           </mat-form-field>
           <mat-form-field appearance="outline" >
-            <mat-label>Profile Image</mat-label>
-            <input formControlName="profileImg" matInput />
-          </mat-form-field>
+            <mat-label>Your Email</mat-label>
+            <input formControlName="email" matInput />
+        </mat-form-field>
+
           <mat-form-field appearance="outline" >
             <mat-label>About Me</mat-label>
             <input formControlName="aboutMe" matInput />
@@ -81,7 +88,7 @@
 
       </div>
     </mat-step>
-    <mat-step>
+    <mat-step  editable=false>
       <ng-template matStepLabel>Complete</ng-template>
         <div class="done-container">
           <h2> You are now done.</h2>
@@ -102,3 +109,5 @@
   </ng-template>
 
 </div>
+
+

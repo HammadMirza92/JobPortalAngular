@@ -1,9 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IJobType, ILocation } from 'src/app/Interface/IDataTypes';
+import { IJobClasses, IJobType, ILocation } from 'src/app/Interface/IDataTypes';
 import { IEmployer } from 'src/app/Interface/IEmployer';
 import { EmployerServiceService } from 'src/app/appServices/employer/employer-service.service';
+import { SecurityService } from 'src/app/appServices/security/security.service';
 
 @Component({
   selector: 'app-employer-detail',
@@ -15,12 +16,21 @@ export class EmployerDetailComponent {
   employerId:any;
   employerById:any;
   currentDate:any;
+  currentCandidateId:any;
+  currentCandidateApplied:boolean=false;
+  jobClasses= IJobClasses
 
-  constructor(private router:ActivatedRoute , private routing:Router,private employerService:EmployerServiceService) {
+  constructor(private router:ActivatedRoute , private routing:Router,private employerService:EmployerServiceService,private securityService:SecurityService) {
     this.employerId = this.router.snapshot.params['id'];
-   employerService.fetchEmployer(this.employerId).subscribe((data) => this.employerById =data);
+    this.currentCandidateId = securityService.getCurrentCandidateId();
+    employerService.fetchEmployer(this.employerId).subscribe((data) => this.employerById =data);
   }
-
+  check(){
+    this.currentCandidateApplied = true;
+  }
+  uncheck(){
+    this.currentCandidateApplied = false;
+  }
   getLocationTitle(value: any): string {
     switch (value) {
       case ILocation.Lahore:

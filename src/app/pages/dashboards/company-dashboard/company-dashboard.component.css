@@ -10,11 +10,13 @@
   display: flex;
   background-color: transparent !important;
   color: #2d2d2d;
+  font-family: 'popins', sans-serif;
 }
 .nav-link.active{
   display: flex;
   background-color: transparent !important;
   color: #673ab7 !important;
+  font-weight: bold;
 }
 .nav-link mat-icon{
   margin-right: 10px;
@@ -42,10 +44,12 @@
 .profile-username{
   color: white;
   margin: 15px 0px 0px 10px ;
+  font-family: 'popins', sans-serif;
 }
 .profile-welcome{
   color: white;
   margin: 0px 0px 0px 10px ;
+  font-family: 'popins', sans-serif;
 }
 /* middle  */
 
@@ -65,13 +69,15 @@
   border: 1px solid rgb(179, 179, 179);
   border-radius: 100px;
 }
-.company-howdy{
+.company-welcome{
   color: #2d2d2d;
   font-weight: bold;
   margin: 20px 0px 0px 0px;
+  font-family: 'popins', sans-serif;
 }
 .company-email{
   color: #2d2d2d;
   font-weight: bold;
   margin: 10px 0px 0px 0px;
+  font-family: 'popins', sans-serif;
 }

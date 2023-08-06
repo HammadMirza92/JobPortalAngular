@@ -23,7 +23,11 @@
   width: 100%;
   z-index: -1;
 }
-
+.Job-Icon{
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+}
 .jobTitle{
   color: white;
   font-size: 38px;

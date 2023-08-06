@@ -2,10 +2,10 @@
 <div class="form-container">
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline">
-      <mat-label>Icon</mat-label>
-      <input matInput formControlName="icon">
-    </mat-form-field>
+    <span class="mat-input-file">
+      <input type="file" (change)="onFileSelected($event)">
+    </span>
+
     <mat-form-field appearance="outline">
       <mat-label>title</mat-label>
       <input matInput formControlName="title">
@@ -19,12 +19,16 @@
       <input matInput formControlName="responsibility">
     </mat-form-field>
 
-    <mat-form-field>
+
+
+
+    <mat-form-field >
       <mat-label>Select a Location</mat-label>
       <mat-select formControlName="location">
         <mat-option *ngFor="let location of locationOptions" [value]="location.key">{{ location.value }}</mat-option>
       </mat-select>
     </mat-form-field>
+
     <mat-form-field>
       <mat-label>Select a Type</mat-label>
       <mat-select formControlName="type">
@@ -46,11 +50,11 @@
 
     <mat-form-field appearance="outline">
       <mat-label>startBudget</mat-label>
-      <input matInput formControlName="startBudget">
+      <input matInput formControlName="startBudget" type="number">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>endBudget</mat-label>
-      <input matInput formControlName="endBudget">
+      <input matInput formControlName="endBudget" type="number">
     </mat-form-field>
 
     <mat-form-field>
@@ -72,6 +76,8 @@
       </mat-select>
     </mat-form-field>
 
+
+
     <mat-form-field appearance="outline" >
       <mat-label>Dead Line</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="deadLine">
@@ -88,4 +94,3 @@
   </form>
 
 </div>
-

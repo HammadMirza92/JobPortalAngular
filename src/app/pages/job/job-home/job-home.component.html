@@ -3,158 +3,88 @@
 <div class="container job-home-container">
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-      <!-- Column 1 content here -->
-      <div ngbRow>
-        <div class="container">
-          <aside class="sidebar">
-          <form [formGroup]="profileForm">
-
-            <mat-accordion class="panel">
-              <mat-expansion-panel class="my-toggle">
-                <mat-expansion-panel-header matExpansionToggleIcon="arrow_drop" class="white-icon-header">
-                  <mat-panel-title class="title">
-                    <span class="toggle-icon"></span>
-                    Search by Job Keyword
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <mat-form-field appearance="outline" style="width: 100%">
-                  <mat-label>Job Title</mat-label>
-                  <input
-                    formControlName="jobTitle"
-                    matInput
-                    placeholder="Enter Job TitleS"
-                  />
-                </mat-form-field>
-              </mat-expansion-panel>
-            </mat-accordion>
-
-            <mat-accordion>
-              <mat-expansion-panel class="panel-content">
-                <mat-expansion-panel-header>
-                  Search by Job Keyword
-                </mat-expansion-panel-header>
-                <div>
-                  <mat-form-field appearance="outline" style="width: 100%">
-                    <mat-label>Job Title</mat-label>
-                    <input
-                      formControlName="jobTitle"
-                      matInput
-                      placeholder="Enter Job TitleS"
-                    />
-                  </mat-form-field>
-                </div>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel class="panel-content">
-                <mat-expansion-panel-header>
-                  Search by Location
-                </mat-expansion-panel-header>
-                <div class="jobCheckBoxes">
-
-
-
-                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-                </div>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel class="panel-content">
-                <mat-expansion-panel-header>
-                  Job Type
-                </mat-expansion-panel-header>
-                <div class="jobCheckBoxes">
-                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-                </div>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel class="panel-content">
-                <mat-expansion-panel-header>
-                  Job Status
-                </mat-expansion-panel-header>
-                <div class="jobCheckBoxes">
-                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-                  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
-                </div>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel class="panel-content">
-                <mat-expansion-panel-header>
-                  Start Budget
-                </mat-expansion-panel-header>
-                <div class="jobCheckBoxes">
-                  <mat-slider min="0" max="10000" step="100" showTickMarks discrete [displayWith]="formatLabel">
-                    <input matSliderThumb>
-                  </mat-slider>
-                </div>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel class="panel-content">
-                <mat-expansion-panel-header>
-                  End Budget
-                </mat-expansion-panel-header>
-                <div class="jobCheckBoxes">
-                  <mat-slider min="0" max="10000" step="100"  discrete [displayWith]="formatLabel">
-                    <input matSliderThumb>
-                  </mat-slider>
-                </div>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel class="panel-content">
-                <mat-expansion-panel-header>
-                  Vacancy
-                </mat-expansion-panel-header>
-                <div class="jobCheckBoxes">
-                  <mat-slider min="0" max="200" step="10"  discrete [displayWith]="formatLabelVacancy">
-                    <input matSliderThumb>
-                  </mat-slider>
-                </div>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel class="panel-content">
-                <mat-expansion-panel-header>
-                  Start Date
-                </mat-expansion-panel-header>
-                <div class="jobCheckBoxes">
-
-                </div>
-              </mat-expansion-panel>
-
-              <mat-expansion-panel class="panel-content">
-                <mat-expansion-panel-header>
-                  End Date
-                </mat-expansion-panel-header>
-                <div class="jobCheckBoxes">
-                  <mat-card class="demo-inline-calendar-card">
-                    <mat-calendar [(selected)]="selected"></mat-calendar>
-                  </mat-card>
-                  <p>Selected date: {{selected}}</p>
-                </div>
-              </mat-expansion-panel>
-
-
-
-
-            </mat-accordion>
-
-            <!-- </mat-card-content>
-            <mat-card-actions> -->
-            <button
-              class="btnSearchJob"
-              (click)="saveForm()"
-              color="primary"
-              mat-raised-button
-            >
-              Submit
-            </button>
-            <!-- </mat-card-actions>
-          </mat-card> -->
-          </form>
-        </aside>
+      <div class="searchForm-container">
+        <div class="heading-container">
+          <h2 class="search-heading">job Search</h2>
+          <button mat-raised-button color="primary" class="clear-btn" (click)="clear()">Clear Fliter</button>
         </div>
+
+        <hr/>
+      <form class="form" [formGroup]="jobSearchForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Job Titile</mat-label>
+          <input matInput formControlName="Title" type="text">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select a Location</mat-label>
+          <mat-select formControlName="Location">
+            <mat-option  [value]="null">Select a Location</mat-option>
+            <mat-option *ngFor="let location of locationOptions" [value]="location.key">{{ location.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select a Job Class</mat-label>
+          <mat-select formControlName="JobClass">
+            <mat-option  [value]="null">Select a Job Class</mat-option>
+            <mat-option *ngFor="let jobClass of jobClassOptions" [value]="jobClass.key">{{ jobClass.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select a Job Type</mat-label>
+          <mat-select formControlName="Type">
+            <mat-option  [value]="null">Select a Job Type</mat-option>
+            <mat-option *ngFor="let type of typeOptions" [value]="type.key">{{ type.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select a Job Qualification</mat-label>
+          <mat-select formControlName="Qualification">
+            <mat-option  [value]="null">Select a Job Qualification</mat-option>
+            <mat-option *ngFor="let qualification of qualificationOptions" [value]="qualification.key">{{ qualification.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select a Job Salary Type</mat-label>
+          <mat-select formControlName="SalarayType">
+            <mat-option  [value]="null">Select a Job Salary Type</mat-option>
+            <mat-option *ngFor="let salary of salaryOptions" [value]="salary.key">{{ salary.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Start Budget</mat-label>
+          <input matInput formControlName="StartBudget" type="number">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>End Budget</mat-label>
+          <input matInput formControlName="EndBudget" type="number">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select a Job Experience</mat-label>
+          <mat-select formControlName="JobExperience">
+            <mat-option  [value]="null">Select a Job Experience</mat-option>
+            <mat-option *ngFor="let jobExperience of jobExperienceOptions" [value]="jobExperience.key">{{ jobExperience.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select a shift</mat-label>
+          <mat-select formControlName="JobShift">
+            <mat-option  [value]="null">Select a Job shift</mat-option>
+            <mat-option *ngFor="let shift of shiftOptions" [value]="shift.key">{{ shift.value }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" class="btn-search">Search Job</button>
+      </form>
       </div>
     </div>
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -166,13 +96,10 @@
       </nav>
       <!-- Column 2 content here -->
       <div ngbRow>
-       <app-job-list [jobs]="AllJobdata"  [Featurejobs]="FeatureJobdata" [jobsForNormalUserData]="jobsForNormalUser" [FeatureJobsForNormalUserData]="FeatureJobsForNormalUser"></app-job-list>
+       <app-job-list [clearSearch]="clearSearch" [jobs]="AllJobdata"  [Featurejobs]="FeatureJobdata" [jobsForNormalUserData]="jobsForNormalUser" [FeatureJobsForNormalUserData]="FeatureJobsForNormalUser"  [searchJobNotFoundData]="searchJobNotFound" [jobSearchData]="jobSearch"></app-job-list>
       </div>
     </div>
   </div>
 </div>
 
-<div>
-  {{dataFromHtp}}
-</div>
 

@@ -23,7 +23,6 @@ import { JobListComponent } from './pages/job/job-list/job-list.component';
 import { LoginComponent } from './pages/userAuth/login/login.component';
 import { RegisterComponent } from './pages/userAuth/register/register.component';
 import { EmployersComponent } from './pages/employer/employers/employers.component';
-import { EmployerSearchComponent } from './pages/employer/employer-search/employer-search.component';
 import { CompanyDashboardComponent } from './pages/dashboards/company-dashboard/company-dashboard.component';
 import { EmployerDetailComponent } from './pages/employer/employer-detail/employer-detail.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -42,6 +41,12 @@ import { CompanyDashboardIndexComponent } from './pages/dashboards/company-dashb
 import { CandidateDashboardIndexComponent } from './pages/dashboards/candidate-dashboard/candidate-dashboard-index/candidate-dashboard-index.component';
 import { AppliedJobsComponent } from './pages/dashboards/candidate-dashboard/applied-jobs/applied-jobs.component';
 import { EditJobComponent } from './pages/dashboards/company-dashboard/edit-job/edit-job.component';
+import { EmailConfirmationComponent } from './pages/userAuth/confirmation/email-confirmation/email-confirmation.component';
+import { AdminDashboardComponent } from './pages/dashboards/admin-dashboard/admin-dashboard.component';
+import { AdminDashboardIndexComponent } from './pages/dashboards/admin-dashboard/admin-dashboard-index/admin-dashboard-index.component';
+import { CandidateDataComponent } from './pages/dashboards/admin-dashboard/candidate-data/candidate-data.component';
+import { EmployerDataComponent } from './pages/dashboards/admin-dashboard/employer-data/employer-data.component';
+import { AllAppliedJobsComponent } from './pages/dashboards/admin-dashboard/all-applied-jobs/all-applied-jobs.component';
 
 
 @NgModule({
@@ -57,7 +62,6 @@ import { EditJobComponent } from './pages/dashboards/company-dashboard/edit-job/
     LoginComponent,
     RegisterComponent,
     EmployersComponent,
-    EmployerSearchComponent,
     CompanyDashboardComponent,
     EmployerDetailComponent,
     HomeComponent,
@@ -74,7 +78,13 @@ import { EditJobComponent } from './pages/dashboards/company-dashboard/edit-job/
     CandidateDashboardComponent,
     CandidateDashboardIndexComponent,
     AppliedJobsComponent,
-    EditJobComponent
+    EditJobComponent,
+    EmailConfirmationComponent,
+    AdminDashboardComponent,
+    AdminDashboardIndexComponent,
+    CandidateDataComponent,
+    EmployerDataComponent,
+    AllAppliedJobsComponent
 
   ],
   imports: [

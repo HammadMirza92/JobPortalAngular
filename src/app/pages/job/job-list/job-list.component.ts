@@ -10,20 +10,38 @@ import { SecurityService } from 'src/app/appServices/security/security.service';
 export class JobListComponent {
 
   role:string = '';
-
-  constructor(public SecurityService:SecurityService) {
-  }
-
-
   @Input() jobs:IJob[]= [];
   @Input() Featurejobs:IJob[]= [];
   @Input() FeatureJobsForNormalUserData:IJob[]= [];
   @Input() jobsForNormalUserData:IJob[]= [];
+  @Input() searchJobNotFoundData:boolean= false;
+  @Input() jobSearchData:IJob[]= [];
+  @Input() clearSearch:boolean= false;
 
+
+  isAuth:boolean =false;
+  isCompany:boolean =false;
+  isCandidate:boolean =false;
   Feature ="Feature";
   jobClasses= IJobClasses
-
   JobLocation =location;
+
+  constructor(public SecurityService:SecurityService) {
+  }
+
+  ngOnInit() {
+    this.SecurityService.isAuthenticated.subscribe(value => {
+      this.isAuth = value;
+    });
+    this.SecurityService.isCompanyLogin.subscribe(value => {
+      this.isCompany = value;
+    });
+    this.SecurityService.isCandidateLogin.subscribe(value => {
+      this.isCandidate = value;
+    });
+  }
+
+
 
 
   getLocationTitle(value: any): string {

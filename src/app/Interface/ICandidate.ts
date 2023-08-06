@@ -4,6 +4,7 @@ import { IJobSkills, ILocation, IQualification } from "./IDataTypes";
 export interface ICandidate {
   id:string,
   name:string,
+  email:string,
   profileImg:string,
   aboutMe:string,
   experience:string,
@@ -25,6 +26,11 @@ export interface ICandidateSkills{
   candidate:ICandidate,
   skillId:string,
   skills:ISkills
+}
+export interface ISearchCandidate{
+  candidateName?:string,
+  candiadteField?:string,
+  location?:ILocation
 }
 
 export interface ISkills{

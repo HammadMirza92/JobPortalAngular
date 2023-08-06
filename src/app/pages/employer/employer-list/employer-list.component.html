@@ -1,13 +1,12 @@
-<span
-*ngIf="EmployerData.length != 0; then ifBlock; else elseBlock"
-></span>
 
-<ng-template #ifBlock>
-<div class="row">
-  <div class="company col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngFor="let Employer of EmployerData">
+
+<!-- Search Employer Data -->
+<div class="row" *ngIf="EmployerSearchData.length != 0 && clearSearch== false">
+
+  <div class="company col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngFor="let Employer of EmployerSearchData">
     <div class="company-img">
       <div class="company-logo">
-        <a href="#"> <img src="{{Employer.companyLogo}}" class="img-responsive" alt="image"></a>
+        <a href="#"> <img src="../../../../assets/Images/companyLogo/{{Employer.companyLogo}}" class="img-responsive" alt="image"></a>
       </div>
       <div class="company-title">
         <h3><a href="#">{{Employer.companyName}}</a></h3>
@@ -28,10 +27,43 @@
   </div>
 
 </div>
-</ng-template>
+
+<!-- Employer Data -->
+<div class="row" *ngIf="EmployerSearchData.length == 0 && EmployerData.length != 0 &&  ( searchEmployerNotFoundData==false|| clearSearch== true )">
+  <div class="company col-lg-6 col-md-6 col-sm-6 col-xs-12" *ngFor="let Employer of EmployerData">
+    <div class="company-img">
+      <div class="company-logo">
+        <a href="#"> <img src="../../../../assets/Images/companyLogo/{{Employer.companyLogo}}" class="img-responsive" alt="image"></a>
+      </div>
+      <div class="company-title">
+        <h3><a href="#">{{Employer.companyName}}</a></h3>
+        <p class="location"> {{Employer.headquarters}}</p>
+      </div>
+      <div class="company-view">
+        <a data-value="18" class="btn n-btn-rounded view_company"  [routerLink]="['/employers/employer-detail/', Employer.id]"><i class="fa fa-send-o"></i> View Detail</a>
+      </div>
+    </div>
+    <div class="company-bottom">
+      <ul class="social-links list-inline">
+        <li><a href="#"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/006-facebook.png" alt="icon"></a></li>
+        <li><a href="#"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/004-twitter.png" alt="icon"></a></li>
+        <li><a href="#"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/003-google-plus.png" alt="icon"></a></li>
+        <li><a href="#"><img src="https://jobs.nokriwp.com/wp-content/themes/nokri/images/icons/005-linkedin.png" alt="icon"></a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
 
 
-
-<ng-template #elseBlock>
+<!-- Loading -->
+<div *ngIf="EmployerSearchData.length ==0 && EmployerData.length == 0 "  class="noData-found-container">
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</ng-template>
+  <iframe src="https://embed.lottiefiles.com/animation/114201"  width="800" height="600S"></iframe>
+</div>
+
+<!-- No Data Found -->
+<div *ngIf="searchEmployerNotFoundData && clearSearch== false" class="noData-found-container">
+  <h1 class="noData-found-heading">Ooops No Data Found</h1>
+  <iframe src="https://embed.lottiefiles.com/animation/72311" width="800" height="600S"></iframe>
+</div>

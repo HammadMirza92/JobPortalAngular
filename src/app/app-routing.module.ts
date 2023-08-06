@@ -18,26 +18,52 @@ import { CandidateDetailComponent } from './pages/candidate/candidate-detail/can
 import { CandidateDashboardComponent } from './pages/dashboards/candidate-dashboard/candidate-dashboard.component';
 import { CompanyDashboardComponent } from './pages/dashboards/company-dashboard/company-dashboard.component';
 import { EditJobComponent } from './pages/dashboards/company-dashboard/edit-job/edit-job.component';
+import { IsCandidateGuard } from './guard/is-candidate.guard';
+import { IsEmployerGuard } from './guard/is-employer.guard';
+import { IsAuthGuard } from './guard/is-auth.guard';
+import { EmailConfirmationComponent } from './pages/userAuth/confirmation/email-confirmation/email-confirmation.component';
+import { AdminDashboardComponent } from './pages/dashboards/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  //Job URLs
   { path:'job',component:JobHomeComponent},
-  { path:'create-job',component:CreateJobComponent, canActivate:[IsAdminGuard]},
   { path:'job/view-job/:id', component:ViewJobComponent },
-  { path:'companydashboard/jobclasses/:id', component:JobClassesComponent },
-  { path:'login', component:LoginComponent },
-  { path:'register', component:RegisterComponent },
+
+  //Employer URLs
   { path:'employers', component:EmployersComponent },
   { path:'employers/employer-detail/:id', component:EmployerDetailComponent },
-  { path:'candidateDashboard', component:CandidateDashboardComponent},
-  { path:'companyDashboard', component:CompanyDashboardComponent},
-  { path:'register/candidateregister', component:CandidateRegisterComponent },
-  { path:'register/employerRegister', component:EmployerRegisterComponent },
-  { path:'home', component:HomeComponent },
-  { path:'candidate', component:CandidateComponent },
+
+  //Candidate URLs
+  { path:'candidate', component:CandidateComponent},
   { path:'candidate/candidate-detail/:id', component:CandidateDetailComponent },
-  { path:'eidtJob/:id', component:EditJobComponent },
+
+  //Login Register URLs
+  { path:'login', component:LoginComponent ,canActivate:[IsAuthGuard] },
+  { path:'register', component:RegisterComponent ,canActivate:[IsAuthGuard] },
+  { path:'register/candidateregister', component:CandidateRegisterComponent,canActivate:[IsAuthGuard] },
+  { path:'register/employerRegister', component:EmployerRegisterComponent ,canActivate:[IsAuthGuard]},
+
+  //Company Dashboards URLs
+  { path:'companyDashboard', component:CompanyDashboardComponent,canActivate:[IsEmployerGuard]},
+  { path:'companydashboard/jobclasses/:id', component:JobClassesComponent,canActivate:[IsEmployerGuard] },
+  { path:'eidtJob/:id', component:EditJobComponent,canActivate:[IsEmployerGuard] },
+
+  //Candidate Dashboards URLs
+  { path:'candidateDashboard', component:CandidateDashboardComponent,canActivate:[IsCandidateGuard]},
+
+  //Admin Dashboards URLs
+  { path:'adminDashboard', component:AdminDashboardComponent,canActivate:[IsAdminGuard]},
+
+
+  //Others
+  { path:'home', component:HomeComponent },
+  { path:'email-confirmation', component:EmailConfirmationComponent },
   { path:'**', component:PageNotFoundComponent },
+
+
+
+
 ];
 
 @NgModule({

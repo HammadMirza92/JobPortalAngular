@@ -6,5 +6,5 @@ export interface IAppliedJobs {
   jobsId:string,
   job:IJob,
   candidateId:string,
-  candidate?:ICandidate,
+  candidate:ICandidate,
 }

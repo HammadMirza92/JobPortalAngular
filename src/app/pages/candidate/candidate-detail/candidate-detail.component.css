@@ -90,3 +90,90 @@ margin-top: 20px;
 .jobApplied-contaienr{
   padding: 20px;
 }
+
+
+/* Applied Jobs */
+.Job-heading{
+  font-family: 'popins', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  margin: 40px 0px;
+}
+.JobCards{
+  padding: 20px;
+  border-left: 3px solid #b51c0e!important;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 4px;
+  width: 100%;
+  background-color: #ffffff;
+  margin-bottom:20px;
+  margin-top: 5px;
+  margin-left:5px;
+}
+.JobCards:hover{
+  box-shadow: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.116);
+  border: 1px solid rgb(235, 235, 235);
+}
+.JobCards:not(:hover) {
+  transition: box-shadow 0.3s ease-in;
+  box-shadow: 0px 0px 0px #bbb;
+}
+.jobTitle{
+  font-family: 'popins', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+}
+.companyName{
+  font-family: 'popins', sans-serif;
+}
+.JobLocation{
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
+}
+.JobLocationText{
+  font-family: 'popins', sans-serif;
+  font-weight: 600;
+  margin-left: 10px;
+
+}
+.jobClass{
+  display: flex; flex-direction: row;
+}
+.jobClass .JobClassFeature{
+  background-color: rgba(250, 122, 86, 0.2);
+  color: #fa7a56;
+  padding: 5px 10px;
+  margin: 5px;
+}
+.jobClass .JobClassUrgent{
+  background-color: rgba(255, 187, 0, 0.2);
+  color: #ffbb00;
+  padding: 5px 10px;
+  margin: 5px;
+}
+.jobClass .JobClassPrivate{
+  background-color: rgba(39,209,0,0.2);
+  color: #27d100;
+  padding: 5px 10px;
+  margin: 5px;
+}
+.jobTypes h4 strong{
+  font-family: 'popins', sans-serif;
+}
+.btnglobal{
+  width: 130px;
+  font-family: 'popins', sans-serif;
+}
+
+.noJob-container {
+  display: flex;
+  align-items: center;
+}
+.noJob-container h2{
+  font-family: 'popins', sans-serif;
+  font-weight: bold;
+}

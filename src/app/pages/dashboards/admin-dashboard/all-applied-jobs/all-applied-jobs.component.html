@@ -1,0 +1,30 @@
+<div class="all-applied-jobs-container">
+  <h2 class="candidate-heading">All Applied Jobs Data</h2>
+  <hr class="hrLine"/>
+
+  <button class="btn" color="accent" (click)="allAppliedJobsCSV()"  mat-raised-button>Print CSV</button>
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Job Title</th>
+          <th scope="col">Candiate Name</th>
+          <th scope="col">View</th>
+          <!-- <th scope="col">Action</th> -->
+        </tr>
+      </thead>
+      <tbody>
+
+
+        <tr *ngFor="let item of allAppliedJobs ; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.job.title}}</td>
+          <td>{{ item.candidate.name}}</td>
+          <td> <button class="viewJob-btn btn" color="accent" [routerLink]="['/candidate/candidate-detail/',item.candidate.id]"  mat-raised-button>View</button></td>
+          <!-- <td> <button class="viewJob-btn btn" color="warn"   mat-raised-button>Delete</button></td> -->
+        </tr>
+
+      </tbody>
+    </table>
+
+</div>

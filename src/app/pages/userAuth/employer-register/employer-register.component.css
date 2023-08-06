@@ -6,6 +6,14 @@
   font-family: 'popins', sans-serif;
   font-weight: bold;
 }
+.mat-input-file{
+  background-color: white;
+  box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 100px;
+  width: 100%;
+}
 
 form{
   max-width: 550px;

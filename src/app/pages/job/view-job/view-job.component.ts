@@ -18,19 +18,19 @@ export class ViewJobComponent {
   jobId:string = "";
   JobLocation =Location;
   AllJobdata:IJob[] = [];
-  candidateId:string=" ";
+  currentCandidateId:any;
   appliedJobs:any;
   JobById:any;
-
+  currentCandidateApplied:boolean=false;
 
   constructor(private router:ActivatedRoute ,
     private routing:Router,
     private fetchjobdata:JobDataService,private appliedJobService:AppliedJobsService,private securityService:SecurityService) {
     this.jobId = this.router.snapshot.params['id'];
     fetchjobdata.fetJobById(this.jobId).subscribe((data) => this.JobById =data);
-    var candidateId =  securityService.getCurrentCandidateId();
+    this.currentCandidateId = securityService.getCurrentCandidateId();
 
-    appliedJobService.getCrntCandidateAppliedJobs(this.candidateId).subscribe((data)=>this.appliedJobs = data);
+    appliedJobService.getCrntCandidateAppliedJobs(this.currentCandidateId).subscribe((data)=>this.appliedJobs = data);
 
    }
    applyNow(jobId:string,employerId:string){
@@ -41,7 +41,9 @@ export class ViewJobComponent {
   onBack(){
     this.routing.navigate(['home']);
   }
-
+  check(){
+    this.currentCandidateApplied = true;
+  }
 
 
   getjobTypeTitle(value: number): string {

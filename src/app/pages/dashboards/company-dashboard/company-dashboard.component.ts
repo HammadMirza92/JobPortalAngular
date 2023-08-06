@@ -19,7 +19,6 @@ export class CompanyDashboardComponent {
   }
 
   logout(){
-    debugger;
     this.Security.logout();
   }
 

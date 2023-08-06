@@ -19,7 +19,6 @@ export class CandidateDashboardComponent {
     candidateService.fetchCandidateById(this.candidateId).subscribe((data) => this.candidateById =data);
   }
   logout(){
-    debugger;
     this.Security.logout();
   }
 }

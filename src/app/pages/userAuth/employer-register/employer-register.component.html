@@ -2,15 +2,15 @@
 <div class="main-container">
   <h1>Register as Compnay/Employer</h1>
 
-  <mat-stepper headerPosition="top" #stepper>
-    <mat-step>
+  <mat-stepper [linear]="isLinear"  headerPosition="top" #stepper>
+    <mat-step [stepControl]="form" editable=false>
       <ng-template matStepLabel>Enter Email and Password</ng-template>
       <div class="inner-container">
       <form (submit)="userRegister(form.value)" [formGroup]="form" >
         <mat-form-field appearance="outline" >
             <mat-label>Email</mat-label>
             <input formControlName="email" matInput />
-
+            <mat-error *ngIf="form.invalid">Valid Email is required</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" >
           <mat-label>Passowrd</mat-label>
@@ -23,23 +23,27 @@
       </form>
     </div>
     </mat-step>
-    <mat-step >
+    <mat-step [stepControl]="employerForm" editable=false>
       <ng-template matStepLabel>Enter Company Details</ng-template>
-      <div class="inner-container">
+      <div class="inner-container" >
 
       <form (submit)="companyRegister(employerForm.value)" [formGroup]="employerForm" >
-        <mat-form-field appearance="outline" >
+        <span class="mat-input-file">
+          <input type="file" (change)="onFileSelected($event)">
+        </span>
+        <mat-form-field appearance="outline" style="margin-top: 30px;">
             <mat-label>Company Name</mat-label>
             <input formControlName="companyName" matInput />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Company Email</mat-label>
+          <input formControlName="companyEmail" matInput type="email"/>
         </mat-form-field>
         <mat-form-field appearance="outline" >
           <mat-label>Company About</mat-label>
           <input formControlName="companyAbout" matInput />
         </mat-form-field>
-        <mat-form-field appearance="outline" >
-          <mat-label>Company Logo</mat-label>
-          <input formControlName="companyLogo" matInput />
-        </mat-form-field>
+
         <mat-form-field appearance="outline" >
           <mat-label>Founded</mat-label>
           <input matInput [matDatepicker]="picker" formControlName="founded">
@@ -63,8 +67,7 @@
           <input formControlName="companySize" matInput type="number"/>
         </mat-form-field>
         <div>
-          <!-- <button matStepperNext mat-flat-button color="primary" [disabled]="employerForm.invalid">Complete Process</button>  -->
-          <button matStepperNext mat-flat-button color="primary">Complete Process</button>
+          <button matStepperNext mat-flat-button color="primary" [disabled]="employerForm.invalid">Complete Process</button>
         </div>
       </form>
       </div>

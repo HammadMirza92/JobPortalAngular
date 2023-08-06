@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ICandidate } from 'src/app/Interface/ICandidate';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ICandidate, ISearchCandidate } from 'src/app/Interface/ICandidate';
 import { ILocation } from 'src/app/Interface/IDataTypes';
-import { IEmployer } from 'src/app/Interface/IEmployer';
 import { CandidateService } from 'src/app/appServices/candidate/candidate.service';
-import { EmployerServiceService } from 'src/app/appServices/employer/employer-service.service';
 
 @Component({
   selector: 'app-candidate',
@@ -12,33 +12,63 @@ import { EmployerServiceService } from 'src/app/appServices/employer/employer-se
 })
 export class CandidateComponent {
   candidateData:ICandidate[] = [];
+  candidateSearch:ICandidate[] = [];
+  searchCandidateNotFound =false;
+  CandiadteSearchForm:any;
+  clearSearch = false;
 
-  constructor(private candidateService:CandidateService) {
+
+  constructor(private candidateService:CandidateService,private searchFormCandidate:FormBuilder, private _snackBar: MatSnackBar) {
     candidateService.fetchCandidateData().subscribe((data)=> this.candidateData =data );
   }
 
-  getLocationTitle(value: any): string {
-    switch (value) {
-      case ILocation.Lahore:
-        return 'Lahore';
-      case ILocation.Islamabad:
-        return 'Islamabad';
-      case ILocation.Karachi:
-        return 'Karachi';
-      case ILocation.Multan:
-        return 'Multan';
-      case ILocation.Hydarabad:
-        return 'Hydarabad';
-      case ILocation.Gujranwala:
-        return 'Gujranwala';
-      case ILocation.Faisalabad:
-        return 'Faisalabad';
-      case ILocation.Sialkot:
-        return 'Sialkot';
-      case ILocation.Peshawar:
-      return 'Peshawar';
-      default:
-        return 'Not Defined';
-    }
+  ngOnInit(){
+    this.createCandiadteSearchForm();
   }
+  clear(){
+    this.createCandiadteSearchForm();
+    this.clearSearch = true;
+    this.candidateSearch= [];
+  }
+  createCandiadteSearchForm(){
+    this.CandiadteSearchForm = this.searchFormCandidate.group({
+      CandidateName: [null],
+      CandiadteField:[null],
+      Location:[null],
+    });
+  }
+
+
+  onSubmit(){
+    this.clearSearch = false;
+
+    var data:ISearchCandidate ={
+      candidateName :this.CandiadteSearchForm.value.CandidateName,
+      candiadteField :this.CandiadteSearchForm.value.CandiadteField,
+      location:this.CandiadteSearchForm.value.Location,
+    }
+
+    this.candidateService.searchCandidate(data).subscribe((res)=>{
+      this.candidateSearch = res;
+      this.searchCandidateNotFound =false;
+      if(res.length== 0){
+        this._snackBar.open("Ooops! No Data Found Related to your Search . Please try with another!", 'Close', { duration: 3000 })
+        this.searchCandidateNotFound =true;
+      }
+     },(error) => console.log(error));
+
+  }
+
+  locationOptions =
+  [ { value: "Lahore",key : ILocation.Lahore },
+    { value: "Islamabad",key : ILocation.Islamabad },
+    { value: "Karachi",key : ILocation.Karachi } ,
+    { value: "Multan",key : ILocation.Multan } ,
+    { value: "Hydarabad",key : ILocation.Hydarabad } ,
+    { value: "Gujranwala",key : ILocation.Gujranwala } ,
+    { value: "Faisalabad",key : ILocation.Faisalabad } ,
+    { value: "Sialkot",key : ILocation.Sialkot } ,
+    { value: "Peshawar",key : ILocation.Peshawar } ,
+  ];
+
 }

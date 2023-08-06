@@ -8,4 +8,7 @@ import { IEmployer } from 'src/app/Interface/IEmployer';
 })
 export class EmployerListComponent {
   @Input() EmployerData:IEmployer[]= [];
+  @Input() EmployerSearchData:IEmployer[]= [];
+  @Input() searchEmployerNotFoundData:boolean= false;
+  @Input() clearSearch:boolean= false;
 }

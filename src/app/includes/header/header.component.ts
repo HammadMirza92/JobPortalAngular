@@ -10,6 +10,8 @@ export class HeaderComponent {
   isAuth:boolean =false;
   isCompany:boolean= false;
   isCandidate:boolean=false;
+  isAdmin:boolean=false;
+
 
 
 constructor(private cdr: ChangeDetectorRef,private readonly SecurityService:SecurityService) {}
@@ -24,11 +26,12 @@ ngOnInit() {
   this.SecurityService.isCandidateLogin.subscribe(value => {
     this.isCandidate = value;
   });
-
+  this.SecurityService.isAdminLogin.subscribe(value => {
+    this.isAdmin = value;
+  });
 }
 
 logout(){
-  debugger;
   this.SecurityService.logout();
 }
 

@@ -12,3 +12,10 @@ mat-form-field{
 .btn-submit{
   width: 100%;
 }
+.mat-input-file{
+  background-color: white;
+  box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.06);
+  border-radius: 5px;
+  padding: 20px;
+
+}

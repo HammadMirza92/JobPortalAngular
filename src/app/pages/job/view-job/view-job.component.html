@@ -1,7 +1,12 @@
 <div class="fluid-container TopContainer">
+
   <div class="InnerData container">
     <div class="row" style="align-items: center;">
+    <div class="col-md-2">
+      <img src="../../../../assets/Images/jobIcons/{{JobById.icon}}" class="Job-Icon"alt="Image Description"/>
+    </div>
       <div class="col-md-8">
+
         <div class="jobClass">
           <div *ngFor="let classOfJob of JobById.allJobsClasses">
             <span *ngIf="classOfJob.jobClass.name === 'Feature'" class="JobClassFeature">Feature</span>
@@ -27,15 +32,23 @@
           <span class="JobLocationText"> {{ JobById.jobPosted | date:'EEEE, MMMM dd, yyyy'}} ago</span>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
+
+        <span *ngFor="let applied of JobById.appliedJobs">
+
+          <div *ngIf="applied.candidateId == currentCandidateId && applied!=0" >
+             {{check()}}
+          </div>
+        </span>
+        <div *ngIf="currentCandidateApplied == false" >
         <button class="apply-now-btn" (click)="applyNow(JobById.id,JobById.employerId)" >
           Apply Now
         </button>
       </div>
+      </div>
     </div>
   </div>
 </div>
-
 <div class="container job-information-row">
   <div class="row">
     <div class="col-md-9 ">
@@ -47,7 +60,7 @@
             <img src="./../../../../assets/tick-icon.png" class="job-information-img"/>
             <div>
               <p class="job-information-innerHeading">Salary</p>
-              <p class="job-information-innerContent">$ {{ JobById.startBudget }}-{{ JobById.endBudget }} / {{getsalaryTypeTitle(JobById.salaryType)}}</p>
+              <p class="job-information-innerContent"> {{ JobById.startBudget }}-{{ JobById.endBudget }} / {{getsalaryTypeTitle(JobById.salaryType)}}</p>
             </div>
           </div>
         </div>
@@ -123,10 +136,10 @@
 
     <div class="col-md-3">
       <div class="company-profile">
-        <img src="{{JobById.employer.companyLogo}}" class="company-logo"/>
+        <img src="../../../../assets/Images/companyLogo/{{JobById.employer.companyLogo}}" class="company-logo"/>
         <h3 class="company-title">{{JobById.employer.companyName}}</h3>
         <button class="apply-now-btn"  [routerLink]="['/employers/employer-detail/', JobById.employer.id]" >
-          View Detail
+          View Company
         </button>
       </div>
 

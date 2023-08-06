@@ -1,0 +1,21 @@
+.employer-overview-container{
+  background-color: #FFF;
+  box-shadow: 1px 0px 20px rgba(197, 197, 197, 0.3);
+  padding: 4%;
+  margin-bottom: 3%;
+}
+.employer-heading{
+  font-family: 'popins', sans-serif;
+  font-weight: bold;
+
+}
+.hrLine{
+  width: 20%;
+}
+table{
+  font-family: 'popins', sans-serif;
+}
+.btn{
+  font-family: 'popins', sans-serif;
+
+}

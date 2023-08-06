@@ -26,6 +26,20 @@ export interface IJob {
   jobSkills:IJobSkills,
   appliedJobs?:IAppliedJobs[]
 }
+export interface IJobSearch {
+
+  title?:string,
+  location?:Location
+  type?:IJobType,
+  qualification?:IQualification,
+  salaryType?:ISalaryType,
+  startBudget?:number,
+  endBudget?:number,
+  jobExperience?:IJobExperience,
+  jobShift?:IJobShift,
+  jobClass?:IJobClasses
+}
+
 export interface IJobSkills{
   id:string,
   jobId:string,
@@ -131,5 +145,5 @@ export enum IJobClasses
 {
   Feature = 0,
   Urgent = 1,
-  Private = 2,
+  Remote = 2,
 }

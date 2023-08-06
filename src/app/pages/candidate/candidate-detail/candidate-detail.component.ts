@@ -5,6 +5,7 @@ import { IJobClasses, IJobType, ILocation, IQualification } from 'src/app/Interf
 import { AppliedJobsService } from 'src/app/appServices/appliedJobs/applied-jobs.service';
 import { CandidateService } from 'src/app/appServices/candidate/candidate.service';
 import { EmployerServiceService } from 'src/app/appServices/employer/employer-service.service';
+import { SecurityService } from 'src/app/appServices/security/security.service';
 
 @Component({
   selector: 'app-candidate-detail',
@@ -17,14 +18,24 @@ export class CandidateDetailComponent {
   candidateById:any;
   appliedJobs:any;
   jobClasses= IJobClasses;
+  isAuth:boolean =false;
+  isAdmin:boolean=false;
 
-  constructor(private router:ActivatedRoute , private routing:Router,private candidateService:CandidateService,private appliedJobService:AppliedJobsService) {
+  constructor(private router:ActivatedRoute , private routing:Router,private SecurityService:SecurityService ,private candidateService:CandidateService,private appliedJobService:AppliedJobsService) {
     this.candidateId = this.router.snapshot.params['id'];
     candidateService.fetchCandidateById(this.candidateId).subscribe((data) => this.candidateById =data);
 
     appliedJobService.getCrntCandidateAppliedJobs(this.candidateId).subscribe((data)=>this.appliedJobs = data);
   }
 
+  ngOnInit() {
+    this.SecurityService.isAuthenticated.subscribe(value => {
+      this.isAuth = value;
+    });
+    this.SecurityService.isAdminLogin.subscribe(value => {
+      this.isAdmin = value;
+    });
+  }
 
   getLocationTitle(value: ILocation): string {
     switch (value) {

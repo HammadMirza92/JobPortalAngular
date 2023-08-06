@@ -9,8 +9,9 @@ import { ILocation } from 'src/app/Interface/IDataTypes';
 })
 export class CandidateListComponent {
   @Input() candidateData:ICandidate[]= [];
-
-
+  @Input() candidateSearchData:ICandidate[]= [];
+  @Input() searchCandidateNotFoundData:boolean= false;
+  @Input() clearSearch:boolean= false;
 
   getLocationTitle(value: any): string {
     switch (value) {

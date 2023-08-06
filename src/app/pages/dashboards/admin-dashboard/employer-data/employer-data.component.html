@@ -1,0 +1,32 @@
+<div class="employer-overview-container">
+  <h2 class="employer-heading">All Companies Data </h2>
+  <hr class="hrLine"/>
+
+  <button class="btn" color="accent" (click)="allEmployerCSV()"  mat-raised-button>Print CSV</button>
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Headquarter</th>
+          <th scope="col">Size</th>
+          <th scope="col">Action</th>
+
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let item of EmployerData ; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.companyName}}</td>
+          <td>{{ item.companyEmail}}</td>
+          <td>{{ item.headquarters }}</td>
+          <td>{{ item.companySize}}</td>
+          <td> <button class="viewJob-btn btn" color="accent" [routerLink]="['/employers/employer-detail/',item.id]"  mat-raised-button>View</button></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+</div>

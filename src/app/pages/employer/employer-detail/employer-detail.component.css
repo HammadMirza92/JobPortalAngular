@@ -159,7 +159,10 @@ margin-top: 20px;
 .jobTypes h4 strong{
   font-family: 'popins', sans-serif;
 }
-
+.btnglobal{
+  width: 130px;
+  font-family: 'popins', sans-serif;
+}
 
 .noJob-container {
   display: flex;

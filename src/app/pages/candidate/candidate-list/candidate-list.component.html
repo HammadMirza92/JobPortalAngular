@@ -1,41 +1,79 @@
-<span
-*ngIf="candidateData.length != 0; then ifBlock; else elseBlock"
-></span>
+<div class="container">
 
-<ng-template #ifBlock>
-  <div class="row">
+  <!-- Search Candidate Data -->
+  <div class="row" *ngIf="candidateSearchData.length!=0 && clearSearch== false">
 
-  <div class="candidate col-lg-5 col-md-5 col-sm-5 col-xs-12" *ngFor="let Candidate of candidateData">
+    <div class="candidate col-lg-5 col-md-5 col-sm-5 col-xs-12" *ngFor="let Candidate of candidateSearchData">
 
-    <h2>{{Candidate.name}}</h2>
-    <h3>{{Candidate.experience}}</h3>
-    <div class="candidate-img-container">
+      <h2>{{Candidate.name}}</h2>
+      <h3>{{Candidate.experience}}</h3>
+      <div class="candidate-img-container">
 
-      <div class="candidate-logo">
-        <img src="{{Candidate.profileImg}}" class="img-responsive" alt="image">
-      </div>
-      <div class="candidate-location-container">
+        <div class="candidate-logo">
+          <img src="../../../../assets/Images/candidateImgs/{{Candidate.profileImg}}" class="img-responsive" alt="image">
+        </div>
+        <div class="candidate-location-container">
 
-        <p class="location"> {{ getLocationTitle(Candidate.location)}}</p>
-      </div>
-      <div class="skill-container" >
-        <div class="row">
-          <span *ngFor="let candidateSkill of Candidate.candidateSkills" class="skills">
-            {{candidateSkill.skills.jobSkill}}
-          </span>
+          <p class="location"> {{ getLocationTitle(Candidate.location)}}</p>
+        </div>
+        <div class="skill-container" >
+          <div class="row">
+            <span *ngFor="let candidateSkill of Candidate.candidateSkills" class="skills">
+              {{candidateSkill.skills.jobSkill}}
+            </span>
+          </div>
+        </div>
+        <div class="candidate-view">
+          <a class="btn candidate-btn"  [routerLink]="['/candidate/candidate-detail/', Candidate.id]"> View Detail</a>
         </div>
       </div>
-      <div class="candidate-view">
-        <a class="btn candidate-btn"  [routerLink]="['/candidate/candidate-detail/', Candidate.id]"> View Detail</a>
-      </div>
-    </div>
 
+    </div>
+  </div>
+
+
+
+  <!-- candidate Data -->
+  <div class="row" *ngIf="candidateSearchData.length ==0 && candidateData.length != 0 && ( searchCandidateNotFoundData==false|| clearSearch== true ) ">
+
+    <div class="candidate col-lg-5 col-md-5 col-sm-5 col-xs-12" *ngFor="let Candidate of candidateData">
+
+      <h2>{{Candidate.name}}</h2>
+      <h3>{{Candidate.experience}}</h3>
+      <div class="candidate-img-container">
+
+        <div class="candidate-logo">
+          <img src="../../../../assets/Images/candidateImgs/{{Candidate.profileImg}}" class="img-responsive" alt="image">
+        </div>
+        <div class="candidate-location-container">
+
+          <p class="location"> {{ getLocationTitle(Candidate.location)}}</p>
+        </div>
+        <div class="skill-container" >
+          <div class="row">
+            <span *ngFor="let candidateSkill of Candidate.candidateSkills" class="skills">
+              {{candidateSkill.skills.jobSkill}}
+            </span>
+          </div>
+        </div>
+        <div class="candidate-view">
+          <a class="btn candidate-btn"  [routerLink]="['/candidate/candidate-detail/', Candidate.id]"> View Detail</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="candidateSearchData.length ==0 && candidateData.length == 0 "  class="noData-found-container">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <iframe src="https://embed.lottiefiles.com/animation/114201"  width="800" height="600S"></iframe>
+  </div>
+
+  <!-- data Not Found -->
+  <div *ngIf="searchCandidateNotFoundData && clearSearch== false" class="noData-found-container">
+    <h1 class="noData-found-heading">Ooops No Data Found</h1>
+    <iframe src="https://embed.lottiefiles.com/animation/72311" width="800" height="600S"></iframe>
   </div>
 </div>
-</ng-template>
 
-
-
-<ng-template #elseBlock>
-  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</ng-template>

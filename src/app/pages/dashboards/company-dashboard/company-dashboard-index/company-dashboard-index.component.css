@@ -19,13 +19,13 @@
   height: 60px;
 }
 .pb-job-title{
-  color: white;
+  color: #fff;
 }
 .pb-job-count{
-  color: white;
+  color: #fff;
 }
 .pb-job-link{
-  color: white;
+  color: #fff;
   text-decoration: none;
 }
 .pb-job-link:hover{
@@ -38,4 +38,7 @@
   font-family: 'popins', sans-serif;
   font-weight: 600;
   font-size: 18px;
+}
+.table{
+  font-family: 'popins', sans-serif;
 }

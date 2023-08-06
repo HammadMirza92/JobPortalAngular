@@ -42,20 +42,6 @@
               >Candidate</a
             >
           </li>
-          <ng-container *ngIf="isCompany">
-
-
-          <li class="nav-item">
-            <a
-              [routerLinkActiveOptions]="{ exact: true }"
-              routerLinkActive="active"
-              routerLink="Nice"
-              >Nice staff</a
-            >
-          </li>
-        </ng-container>
-
-
 
           <li class="nav-item" *ngIf="isAuth && isCompany">
             <a mat-icon-button [matMenuTriggerFor]="Companymenu"> <mat-icon>account_circle</mat-icon></a>
@@ -63,6 +49,10 @@
 
           <li class="nav-item" *ngIf="isAuth && isCandidate">
             <a mat-icon-button [matMenuTriggerFor]="Candidatemenu"> <mat-icon>account_circle</mat-icon></a>
+          </li>
+
+          <li class="nav-item" *ngIf="isAuth && isAdmin">
+            <a mat-icon-button [matMenuTriggerFor]="AdminMenu"> <mat-icon>account_circle</mat-icon></a>
           </li>
 
 
@@ -85,15 +75,6 @@
           </li>
         </ng-container>
 
-
-        <!-- <li class="nav-item">
-          <a
-            [routerLinkActiveOptions]="{ exact: true }"
-            routerLinkActive="active"
-            routerLink="candidate"
-            >{{"auth"+isAuth +": iscompany "+isCompany+": iscandiate "+isCandidate}}</a
-          >
-        </li> -->
 
         </ul>
 
@@ -123,7 +104,17 @@
     <span><a >Logout</a></span>
   </button>
 </mat-menu>
-<!-- {{"user auth is "+ userAuthenticate}} -->
+
+<mat-menu #AdminMenu="matMenu">
+  <button mat-menu-item  routerLink="adminDashboard" class="dropdown-link">
+    <mat-icon>list_alt</mat-icon>
+    <span> <a>Dashboard Admin</a></span>
+  </button>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    <span><a >Logout</a></span>
+  </button>
+</mat-menu>
 
 
 

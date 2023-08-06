@@ -20,7 +20,7 @@
           <div class="row">
             <div class="col-md-9">
               <h2 class="pb-job-title">Total Applications</h2>
-              <p  class="pb-job-count">{{(jobs).length}}</p>
+              <p  class="pb-job-count">{{jobs.length}}</p>
               <p class="pb-job-link"><a  class="pb-job-link" [routerLink]="['/employers/employer-detail/', employerById.id]">Go To Profile</a></p>
             </div>
             <div class="col-md-3">
@@ -36,6 +36,7 @@
 
 
       <div *ngIf="(employerById.jobOffered).length != 0;else noJob">
+        <button color="accent" (click)="jobOfferedCSV(employerById.jobOffered)"  mat-raised-button>Print CSV</button>
         <table class="table table-hover table-striped">
           <thead>
             <tr>
@@ -43,6 +44,7 @@
               <th scope="col">Job Title</th>
               <th scope="col">Location</th>
               <th scope="col">Type</th>
+
               <th scope="col">Action</th>
 
             </tr>
@@ -53,9 +55,13 @@
               <td>{{ item.title }}</td>
               <td>{{ getLocationTitle(item.location)}}</td>
               <td>{{ getJobTypeTitle(item.type)}}</td>
+              <!-- <td>{{ item| }}</td> -->
               <td>
-                <button color="primary"  [routerLink]="['/eidtJob/', item.id]"  mat-raised-button>Edit</button>
-                <button color="warn" [routerLink]="['/companydashboard/jobclasses/', item.id]"  mat-raised-button>Delete</button>
+
+                <span *ngIf="!item.isDeleted">
+                  <button color="warn" [routerLink]="['/companyDashboard/']" (click)="deleteJob(item.id)" mat-raised-button>Delete</button>
+                </span>
+
               </td>
             </tr>
 
@@ -66,7 +72,8 @@
 
 
       <h2 class="job-overview-title">Recent Applications </h2>
-      <div *ngIf="(employerById.jobOffered).length != 0;else noJob">
+      <div *ngIf="(employerById.jobOffered).length != 0;else noApply">
+
         <table class="table table-hover table-striped">
           <thead>
             <tr>
@@ -74,6 +81,7 @@
               <th scope="col">Job Title</th>
               <th scope="col">Candiate Name</th>
               <th scope="col">View</th>
+              <th scope="col">Send Email</th>
 
             </tr>
           </thead>
@@ -84,18 +92,9 @@
                 <td>{{items.job.title}}</td>
                 <td> {{items.candidate.name}}</td>
                 <td><button color="primary"  [routerLink]="['/candidate/candidate-detail/', items.candidate.id]"  mat-raised-button>View</button></td>
+                <td><button color="accent" (click)="sendEmail(items.candidate.id,items.job.id,items.job.employerId)"  mat-raised-button>Send Email</button></td>
+
               </tr>
-
-              <!-- <span *ngFor="let job of item.appliedJobs"> -->
-                <!-- {{job.candidate.name }} -->
-
-
-
-                  <!-- <td>{{job.candidate.name }}</td> -->
-                  <!-- <td>{{ }}</td> -->
-                  <!-- <td><button color="primary"  [routerLink]="['/companydashboard/jobclasses/', item.id]"  mat-raised-button>Edit</button></td> -->
-                <!-- </span> -->
-
 
             <tr *ngFor="let item of jobs.appliedJobs" >
 
@@ -119,5 +118,11 @@
   <div class="noJob-container">
     <iframe src="https://embed.lottiefiles.com/animation/109013"></iframe>
     <h2>No Jobs Posted Yet</h2>
+  </div>
+</ng-template>
+<ng-template #noApply>
+  <div class="noJob-container">
+    <iframe src="https://embed.lottiefiles.com/animation/109013"></iframe>
+    <h2>No Job Application Found</h2>
   </div>
 </ng-template>

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IJobExperience, IJobShift, IJobStatus, IJobType, ILocation, IQualification, ISalaryType } from 'src/app/Interface/IDataTypes';
 import { JobDataService } from 'src/app/appServices/job/job-data.service';
 import { SecurityService } from 'src/app/appServices/security/security.service';
@@ -13,37 +13,35 @@ import { SecurityService } from 'src/app/appServices/security/security.service';
   styleUrls: ['./edit-job.component.css']
 })
 export class EditJobComponent {
-  constructor(private router: Router,
+  error:string='';
+  jobForm: FormGroup  = new FormGroup({});
+  formGroup: FormGroup= new FormGroup({});
+  form: FormGroup = new FormGroup({});
+  jobId:string = "";
+  JobById:any;
+
+
+  constructor(private router:ActivatedRoute ,
+    private routing:Router,
     private formBuilder: FormBuilder,
     private securityServices:SecurityService,
     private jobService:JobDataService,
     private _formBuilder: FormBuilder,
     private fb: FormBuilder,
    private snackBar: MatSnackBar,
-    private http: HttpClient){}
 
- error:string='';
- jobForm: FormGroup  = new FormGroup({});
+    private http: HttpClient){
+      this.jobId = this.router.snapshot.params['id'];
+      jobService.fetJobById(this.jobId).subscribe((data) => this.JobById =data);
+
+
+    }
 
  getAllLocation() {
    return Object.values(ILocation).filter(value => typeof value === 'string');
  }
 
- form: FormGroup = new FormGroup({});
 
- defaultValue = 'Default Job Title';
- editableValue: string="sdfsdfsdf";
-
-  onSubmits() {
-   // Perform the desired action with the editableValue
-   console.log(this.editableValue);
- }
- ngOnInit(): void {
-  this.jobForm = this.formBuilder.group({
-    title: 'Default Job Title'
-    // other form controls...
-  });
- }
  locationOptions =
  [ { value: "Lahore",key : ILocation.Lahore },
    { value: "Islamabad",key : ILocation.Islamabad },
@@ -94,16 +92,45 @@ export class EditJobComponent {
  [ { value: "Open",key : IJobStatus.Open },
    { value: "Close",key : IJobStatus.Close },
  ];
+ ngOnInit(): void {
+   this.form = new FormGroup({
+    //icon: new FormControl('', Validators.required),
+     title: new FormControl('', Validators.required),
+     description: new FormControl('', Validators.required),
+     responsibility: new FormControl('', Validators.required),
+     location: new FormControl('', Validators.required),
+     type: new FormControl('', Validators.required),
+     qualifications: new FormControl('', Validators.required),
+     salaryType: new FormControl('', Validators.required),
+     startBudget: new FormControl('', Validators.required),
+     endBudget: new FormControl('', Validators.required),
+     //jobSkills: new FormControl('', Validators.required),
+     jobExperience: new FormControl('', Validators.required),
+     shift: new FormControl('', Validators.required),
+     status: new FormControl('', Validators.required),
+     vacancy: new FormControl('', Validators.required),
+     deadLine: new FormControl('', Validators.required),
+
+   });
+
+
+ }
+
+
  onSubmit() {
+
+
    if (this.form.valid) {
 
-     this.jobService.postJob( this.form.value).subscribe((data)=>{
-       console.log("job data is",data);
-       this.snackBar.open('Job Post Successfully', 'Close', { duration: 3000 });
-       this.router.navigate(['/job']);
-     },error=>this.error = error);
-   } else {
-     this.snackBar.open('Please fill in all required fields', 'Close', { duration: 3000 });
+    //  this.jobService.postJob( this.form.value).subscribe((data)=>{
+
+    //    this.snackBar.open('Job Post Successfully', 'Close', { duration: 3000 });
+    //    this.securityServices.removeTempData();
+    //    this.routing.navigate(['/job']);
+
+    //  },error=>this.error = error);
+  //  } else {
+  //    this.snackBar.open('Please fill in all required fields', 'Close', { duration: 3000 });
    }
  }
 }
