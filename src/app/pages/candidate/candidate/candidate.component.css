@@ -1,5 +1,47 @@
+.main-container{
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.heading-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.clear-btn{
+  font-family: 'popins', sans-serif;
+}
+.search-heading{
+  font-weight: bold;
+  font-family: 'popins', sans-serif;
+}
+.breadcrumb-item{
+  font-family: 'popins', sans-serif;
+}
+
+/* Search Form */
+.searchForm-container{
+  background-color: #ffffff;
+  box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.116);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  font-family: 'popins', sans-serif;
+}
+.search-heading{
+  font-weight: bold;
+  font-family: 'popins', sans-serif;
+}
+mat-form-field{
+  width: 100%;
+}
+.btn-search{
+  width: 100%;
+  font-family: 'popins', sans-serif;
+}
+/* Candidate */
 .candidate{
-  background-color: white;
+  background-color: #ffffff;
   box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.116);
   margin: 10px;
   padding: 10px;

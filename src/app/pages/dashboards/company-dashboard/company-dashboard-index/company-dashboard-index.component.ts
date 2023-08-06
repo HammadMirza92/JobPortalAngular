@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IJobType, ILocation } from 'src/app/Interface/IDataTypes';
+import { IJob, IJobType, ILocation } from 'src/app/Interface/IDataTypes';
+import { IEmployerToCandidateEmail } from 'src/app/Interface/IEmail';
+import { CsvService } from 'src/app/appServices/csv/csv.service';
+import { EmailService } from 'src/app/appServices/email/email.service';
 import { EmployerServiceService } from 'src/app/appServices/employer/employer-service.service';
 import { JobDataService } from 'src/app/appServices/job/job-data.service';
 import { SecurityService } from 'src/app/appServices/security/security.service';
@@ -15,13 +18,33 @@ export class CompanyDashboardIndexComponent {
   employerById:any;
   jobs:any;
 
-  constructor( private routing:Router,private employerService:EmployerServiceService,private securityServicse:SecurityService,private jobService:JobDataService) {
+  constructor( private routing:Router,private employerService:EmployerServiceService,private securityServicse:SecurityService,private jobService:JobDataService,private emailService:EmailService,private csvService:CsvService) {
 
     this.employerId = securityServicse.getCurrentemployerId();
     employerService.fetchEmployer(this.employerId).subscribe((data) => this.employerById =data);
-    this.jobService.fetchAppliedJobs(this.employerId).subscribe((data)=> this.jobs = data);
+    this.jobService.fetchAppliedJobs(this.employerId).subscribe((data)=> {
+      console.log("data of applied josb is ",data);
+      this.jobs = data
+    });
+
   }
 
+  deleteJob(id:string){
+    this.jobService.deleteJob(id);
+  }
+
+  sendEmail(candidateId:string,JobId:string,employerId:string){
+    const EmployerToCandidateEmail = {
+      CompanyId:employerId ,
+      CandidateId: candidateId,
+      JobAppliedId: JobId
+    };
+    this.emailService.sendEmailToCandidate(EmployerToCandidateEmail);
+  }
+
+  jobOfferedCSV(data:any){
+    this.csvService.jobOfferedCSVByEmployer(data);
+  }
 
   getLocationTitle(value: any): string {
     switch (value) {

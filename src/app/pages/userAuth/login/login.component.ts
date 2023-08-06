@@ -13,6 +13,8 @@ import { end } from '@popperjs/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+
   constructor(private router: Router,private location: Location,
     private _snackBar: MatSnackBar, private formBuilder: FormBuilder,private securityServices:SecurityService){}
 
@@ -28,21 +30,12 @@ export class LoginComponent {
 
   saveChanges(userCredentials:IUserCredentials){
     this.error= '';
-    this.securityServices.login(userCredentials).subscribe((authenticationResponse)=>{
-      this.securityServices.saveToken(authenticationResponse);
-      if(authenticationResponse.employerId!=null){
-        this.securityServices.setCurrentemployerId(authenticationResponse.employerId);
-        this.securityServices.setCurrentuserRole(authenticationResponse.role);
-      }
-      if(authenticationResponse.candidateId!=null){
-        this.securityServices.setCurrentCandidateId(authenticationResponse.candidateId);
-        this.securityServices.setCurrentuserRole(authenticationResponse.role);
-      }
-      this.openSnackBar();
-      this.router.navigate(['/job']);
-    },error=>this.errorFunction(error))
+
+     this.securityServices.login(userCredentials);
 
   }
+
+
   errorFunction(error:any){
     if(error.error == "Incorrect Login"){
       this._snackBar.open("Invalid Logins PLease Try with valid logins", 'Close', { duration: 3000 })
